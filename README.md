@@ -23,17 +23,17 @@ A webserver and web-ui for [rtl_433](https://github.com/merbanan/rtl_433).
     ```
 
 - the app
-  ````
-  docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
-  ````
+    ```bash
+    docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
+    ```
 
 ## Development
 
 - frontend build pipeline
-  ```bash
-  docker-compose -f docker-compose-frontend.yml
-  docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
-  ```
+    ```bash
+    docker-compose -f docker-compose-frontend.yml
+    docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
+    ```
 
 
 ---
