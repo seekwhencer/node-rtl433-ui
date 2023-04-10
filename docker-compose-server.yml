@@ -8,8 +8,8 @@ services:
       dockerfile: server/Dockerfile
     image: ${PROJECT_NAME}_server
     working_dir: /raspiscan/server
-    command: 'tail -f /dev/null'
-    #command: '--experimental-modules --experimental-json-modules index.js'
+    #command: 'tail -f /dev/null'
+    command: '--experimental-modules --experimental-json-modules index.js'
     user: root
     container_name: ${PROJECT_NAME}_server
     restart: always
