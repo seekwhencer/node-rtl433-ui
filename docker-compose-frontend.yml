@@ -1,0 +1,26 @@
+version: "3.6"
+
+services:
+
+  kidsplayer_frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: ${PROJECT_NAME}_frontend
+    working_dir: /raspiscan/frontend
+    command: 'tail -f /dev/null'
+    #command: "--experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
+    container_name: ${PROJECT_NAME}_frontend
+    volumes:
+      - .:/raspiscan
+      - /raspiscan/frontend/node_modules
+      - /raspiscan/shared/node_modules
+    ports:
+      - '${FRONTEND_SERVER_PORT}:${FRONTEND_SERVER_PORT}'
+    environment:
+      - DEBUG=true
+      - ENVIRONMENT=default
+      - NODE_ENV=development
+      - PROXY_TARGET_HOST=${FRONTEND_PROXY_TARGET_HOST}
+      - PROXY_TARGET_PORT=${FRONTEND_PROXY_TARGET_PORT}
+      - SERVER_PORT=${FRONTEND_SERVER_PORT}

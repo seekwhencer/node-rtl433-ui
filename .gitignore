@@ -1,0 +1,13 @@
+.idea/**/*
+node_modules
+.hot
+npm-debug.log
+.env
+dist
+mapping.json
+config/**/*.conf
+
+zigbee2mqtt/**/*
+
+!.gitkeep
+!zigbee2mqtt/configuration.yaml.example

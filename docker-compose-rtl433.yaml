@@ -1,0 +1,19 @@
+version: "3.6"
+
+networks:
+  app:
+    external: false
+    name: ${PROJECT_NAME}
+
+services:
+
+  rtl433:
+    restart: always
+    image: hertzg/rtl_433:latest
+    container_name: ${PROJECT_NAME}-rtl433
+    devices:
+      - /dev/bus/usb/001/003:/dev/bus/usb/001/003
+    networks:
+      - app
+    volumes:
+      - ./rtl_433/rtl_433.conf:/etc/rtl_433/rtl_433.conf

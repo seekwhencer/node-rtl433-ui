@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  zigbee2mqtt:
+    container_name: ${PROJECT_NAME}_zigbee2mqtt
+    restart: always
+    #command: 'tail -f /dev/null'
+    privileged: false
+    image: koenkk/zigbee2mqtt:latest
+    volumes:
+      - ./zigbee2mqtt:/app/data
+      - /run/udev:/run/udev:ro
+    #network_mode: host
+    ports:
+      - "7080:7080/tcp"
+    extra_hosts:
+      - "${HOST_NAME}:${HOST_IP}"
+    environment:
+      - TZ=Europe/Berlin
+    devices:
+      - /dev/serial/by-id/usb-Silicon_Labs_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0001-if00-port0:/dev/ttyUSB0

@@ -1,0 +1,19 @@
+version: '3.1'
+
+volumes:
+  portainer_data:
+    driver: local
+
+services:
+  portainer:
+    image: portainer/portainer
+    container_name: "portainer-app"
+    restart: always
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - portainer_data:/data
