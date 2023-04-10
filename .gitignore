@@ -5,7 +5,7 @@ npm-debug.log
 .env
 dist
 mapping.json
-#server/config/**/*.conf
+server/config/**/*.conf
 
 zigbee2mqtt/**/*
 

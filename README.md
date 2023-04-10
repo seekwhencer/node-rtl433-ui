@@ -43,6 +43,18 @@
     docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
     ```
 
+--
 
----
->  ... more readme later
+## Features
+- server works as MQTT client to you broker
+- server serves the frontend stuff and some api endpoints
+- server sends a value (single float value, not json) from a device on a specific MQTT topic to your broker - only when the value changes
+- server can update mapping at runtime
+- mapping a **device** and **field** to a **topic** per web ui.
+- frontend language can be edited and set
+
+### Roadmap
+- drop topic
+- drop device
+- forget unmapped device after x seconds / minutes
+
