@@ -1,5 +1,5 @@
 [data-tab] {
-    transform: translate3d(0,-100vh,0);
+    transform: translate3d(0, -100vh, 0);
     transition: all ease-out 0.5s;
     opacity: 0;
     position: fixed;
@@ -10,7 +10,7 @@
     &.active {
         opacity: 1;
         display: block;
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
         transition: all ease-out 0.2s;
     }
 }

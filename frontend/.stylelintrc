@@ -65,6 +65,8 @@
         "declaration-block-no-redundant-longhand-properties": null,
         "font-family-no-missing-generic-family-keyword": null,
         "font-family-name-quotes": null,
-        "scss/no-global-function-names": null
+        "scss/no-global-function-names": null,
+        "selector-attribute-quotes": "never",
+        "scss/dollar-variable-empty-line-before": "never"
     }
 }

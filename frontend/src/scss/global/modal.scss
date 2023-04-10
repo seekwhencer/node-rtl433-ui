@@ -8,11 +8,10 @@
     button {
         cursor: pointer;
 
-        &[data-button="close"] {
+        &[data-button=close] {
             position: absolute;
             right: 20px;
             top: 20px;
-
             background-color: rgba(255, 255, 255, 0.1);
 
             svg {
@@ -31,7 +30,7 @@
             }
         }
 
-        &[data-button="submit"] {
+        &[data-button=submit] {
             position: absolute;
             margin: auto;
             bottom: 20vh;

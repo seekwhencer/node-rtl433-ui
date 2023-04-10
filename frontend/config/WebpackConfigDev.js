@@ -43,15 +43,19 @@ class WebpackDev extends WebpackConfigClass {
             },
 
             plugins: [
+                // js
                 new ESLintPlugin({
                     extensions: 'js',
                     emitWarning: true,
-                    files: path.resolve(this.appPath, './src/**/*.js'),
+                    files: path.resolve(this.appPath, './src'),
                 }),
+
+                // scss
                 new StyleLintPlugin({
                     configFile: path.resolve(this.appPath, './.stylelintrc'),
                     files: path.join('src', '**/*.s?(a|c)ss'),
                 }),
+
             ],
             module: {
                 rules: [
@@ -60,30 +64,17 @@ class WebpackDev extends WebpackConfigClass {
                         loader: "template-literals-loader"
                     },
                     {
-                        test: /\.scss$/,
-                        use: [
-                            /*{
-                                loader: "style-loader",
-                                options: {
-                                    injectType: "linkTag"
-                                }
-                            },*/
-                            {
-                                loader: 'file-loader',
-                                options: {
-                                    name: '[name].css',
-                                    outputPath: '../../dist/dev/css/'
-                                }
-                            },
-                            {
-                                loader: 'sass-loader',
-                                options: {
-                                    sourceMap: true,
-                                },
+                        test: /\.scss$/, use: ['style-loader', {
+                            loader: 'file-loader', options: {
+                                name: '[name].css',
+                                outputPath: '../../dist/dev/css/'
                             }
-                        ],
-                    }
-                ],
+                        }, {
+                            loader: 'sass-loader', options: {
+                                sourceMap: true,
+                            },
+                        }],
+                    }],
             },
 
             watch: true,

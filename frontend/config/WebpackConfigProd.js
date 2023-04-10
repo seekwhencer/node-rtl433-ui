@@ -68,20 +68,23 @@ class WebpackProd extends WebpackConfigClass {
             },
 
             module: {
-                rules: [{
-                    test: /\.html?$/, loader: "template-literals-loader"
-                }, {
-                    test: /\.scss$/, use: ['style-loader', {
-                        loader: 'file-loader', options: {
-                            name: '[name].css',
-                            outputPath: '../../dist/prod/css/'
-                        }
-                    }, {
-                        loader: 'sass-loader', options: {
-                            sourceMap: false,
-                        },
+                rules: [
+                    {
+                        test: /\.html?$/,
+                        loader: "template-literals-loader"
+                    },
+                    {
+                        test: /\.scss$/, use: ['style-loader', {
+                            loader: 'file-loader', options: {
+                                name: '[name].css',
+                                outputPath: '../../dist/prod/css/'
+                            }
+                        }, {
+                            loader: 'sass-loader', options: {
+                                sourceMap: false,
+                            },
+                        }],
                     }],
-                }],
             }
         };
     }

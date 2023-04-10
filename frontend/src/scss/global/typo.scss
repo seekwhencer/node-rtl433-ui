@@ -1,9 +1,12 @@
+// primary
 $font-family-primary: "Barlow";
 $font-path-primary: "./fonts/Barlow";
 
+// secondary
 $font-family-secondary: "Oswald";
 $font-path-secondary: "./fonts/Oswald";
 
+// family
 $font-family: $font-family-primary;
 
 // woff2 mixin
@@ -19,14 +22,6 @@ $font-family: $font-family-primary;
 }
 
 // includes
-/*@include font-face($font-family-primary, "Oswald-ExtraLight", $font-path-primary, 100);
-@include font-face($font-family-primary, "Oswald-Light", $font-path-primary, 200);
-@include font-face($font-family-primary, "Oswald-Medium", $font-path-primary, 300);
-@include font-face($font-family-primary, "Oswald-Regular", $font-path-primary, 400);
-@include font-face($font-family-primary, "Oswald-SemiBold", $font-path-primary, 500);
-@include font-face($font-family-primary, "Oswald-Bold", $font-path-primary, 600);
-*/
-
 @include font-face($font-family-primary, "barlow-v12-latin-100", $font-path-primary, 100);
 @include font-face($font-family-primary, "barlow-v12-latin-200", $font-path-primary, 200);
 @include font-face($font-family-primary, "barlow-v12-latin-300", $font-path-primary, 300);

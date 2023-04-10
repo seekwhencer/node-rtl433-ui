@@ -3,9 +3,10 @@ node_modules
 .hot
 npm-debug.log
 .env
-dist
-mapping.json
-server/config/**/*.conf
+frontend/dist/dev
+server/dist
+rtl_433/mapping.json
+server/config/default.conf
 
 zigbee2mqtt/**/*
 

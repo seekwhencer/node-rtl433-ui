@@ -30,7 +30,7 @@ services:
       - ENVIRONMENT=default
       - NODE_ENV=development
       - PWD=/raspiscan/server
-      - SERVER_FRONTEND_PATH=../frontend/dist/dev
+      - SERVER_FRONTEND_PATH=../frontend/dist/prod
       - HOST_IP=${HOST_IP}
     devices:
       - "${USB_DEVICE_SOURCE}:${USB_DEVICE_TARGET}"

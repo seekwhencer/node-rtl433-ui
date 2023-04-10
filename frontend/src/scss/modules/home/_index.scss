@@ -15,7 +15,9 @@
                 color: white;
             }
 
-            &:hover, &:active &:focus, &:focus-visible {
+            &:hover,
+            &:active &:focus,
+            &:focus-visible {
                 background-color: $color-primary;
             }
         }

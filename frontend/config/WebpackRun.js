@@ -29,7 +29,11 @@ export default class WebpackRun {
         this.bundler = webpack(this.config);
 
         const watching = this.bundler.watch(this.config.watchOptions, (err, stats) => {
-            console.log(stats.hash, stats.fullHash);
+            if (err || stats.hasErrors()) {
+                console.log('>>> ERROR: ', stats.compilation.errors);
+            } else {
+                console.log('>>> BUNDLING COMPLETE');
+            }
         });
 
 //        this.runProd();
