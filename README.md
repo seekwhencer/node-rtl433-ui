@@ -56,5 +56,7 @@
 ### Roadmap
 - drop topic
 - drop device
+- add device to exclude list
+- drop entry from exclude list
 - forget unmapped device after x seconds / minutes
 
