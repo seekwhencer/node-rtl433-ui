@@ -1,0 +1,32 @@
+<div class="devices--device">
+    <div class="devices--device__body">
+
+        <div class="devices--device__id">
+            <table>
+                <tr>
+                    <td><span>ID</span> ${id}</td>
+                    <td><span>PROTOCOL</span> ${protocol}</td>
+                    <td><span>CHANNEL</span> ${channel}</td>
+                    <td><span>MODEL</span> ${model}</td>
+                    <td><span>HASH</span> ${data.hash}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="devices--device__topics" data-device-topics></div>
+        <div class="devices--device__properties">
+            <table>
+                <tr>
+                    ${fields.map(f => `
+                    <td>
+                        <span class="devices--device__property"
+                              data-device-property-button="${f}">${f}</span><br>
+                        <span class="devices--device__value"
+                              data-device-property="${f}">${data[f]}</span>
+                    </td>
+                    `).join('')}
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

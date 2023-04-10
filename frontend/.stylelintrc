@@ -1,0 +1,70 @@
+{
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+        "max-line-length": null,
+        "block-no-empty": null,
+        "color-no-invalid-hex": true,
+        "comment-empty-line-before": [
+            "always",
+            {
+                "ignore": [
+                    "stylelint-commands",
+                    "after-comment"
+                ]
+            }
+        ],
+        "declaration-colon-space-after": "always",
+        "indentation": [
+            4,
+            {
+                "except": [
+                    "value"
+                ]
+            }
+        ],
+        "max-empty-lines": 2,
+        "rule-empty-line-before": [
+            "always",
+            {
+                "except": [
+                    "first-nested"
+                ],
+                "ignore": [
+                    "after-comment"
+                ]
+            }
+        ],
+        "unit-allowed-list": [
+            "px",
+            "em",
+            "rem",
+            "%",
+            "s",
+            "deg",
+            "fr",
+            "vw",
+            "vh"
+        ],
+        "at-rule-allowed-list": [
+            "media",
+            "mixin",
+            "content",
+            "font-face",
+            "include",
+            "keyframes",
+            "import"
+        ],
+        "scss/at-import-no-partial-leading-underscore": null,
+        "scss/at-import-partial-extension": "always",
+        "selector-pseudo-element-colon-notation": "single",
+        "no-descending-specificity": null,
+        "color-function-notation": null,
+        "alpha-value-notation": "number",
+        "selector-class-pattern": null,
+        "keyframes-name-pattern": null,
+        "declaration-block-no-redundant-longhand-properties": null,
+        "font-family-no-missing-generic-family-keyword": null,
+        "font-family-name-quotes": null,
+        "scss/no-global-function-names": null
+    }
+}

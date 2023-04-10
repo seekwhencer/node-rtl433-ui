@@ -1,0 +1,18 @@
+<div class="topics--topic">
+    <div class="topics--topic__body">
+        <div class="topics--topic__topic">${topic}</div>
+        <div class="topics--topic__device" data-topic-device>${device ? device.hash : ``}</div>
+        <div class="topics--topic__fields">
+            <table>${fields.length > 0 ?
+                `${fields.map(field => `
+                <tr>
+                    <td class="topics--topic__field">${field}</td>
+                    <td class="topics--topic__value"
+                        data-topic-value="${data[field]}">${data[field]}
+                    </td>
+                </tr>
+                `).join('')}` : ``}
+            </table>
+        </div>
+    </div>
+</div>

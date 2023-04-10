@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 9,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-redeclare": "off",
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "no-fallthrough" : "off",
+        "no-constant-condition" : "off",
+        "no-duplicate-case" : "off",
+        "no-useless-escape" : "off",
+        "no-case-declarations": "off"
+    }
+}
