@@ -1,0 +1,19 @@
+{
+  "name": "node-rtl433-mqtt-shared",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dateformat": "^5.0.2",
+    "dotenv": "^10.0.0",
+    "exif": "^0.6.0",
+    "fs-extra": "^10.0.0",
+    "ini": "^3.0.0"
+  }
+}

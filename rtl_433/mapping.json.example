@@ -1,0 +1,16 @@
+[
+  {
+    "topic" : "sensors/room/sleeping/temperature",
+    "field" : "temperature_C",
+    "id" : 94,
+    "channel" : 1,
+    "protocol" : 91
+  },
+  {
+    "topic" : "sensors/room/sleeping/humidity",
+    "field" : "humidity",
+    "id" : 94,
+    "channel" : 1,
+    "protocol" : 91
+  }
+]

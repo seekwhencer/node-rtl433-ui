@@ -1,0 +1,12 @@
+# for development
+DEBUG=true
+
+#
+CLIENT_ID=rtl433
+
+# webserver
+SERVER_PORT=3000
+
+# mqtt broker
+MQTT_HOST=servant
+MQTT_PORT=1883
