@@ -1,0 +1,23 @@
+.home {
+    &--buttons {
+        margin-top: 20vh;
+        text-align: center;
+        padding: 0 100px;
+
+        &__button {
+            margin: 0 20px 20px 0;
+            background-color: rgba($color-primary-dark, 0.4);
+            cursor: pointer;
+
+            svg {
+                width: 100px;
+                height: 100px;
+                color: white;
+            }
+
+            &:hover, &:active &:focus, &:focus-visible {
+                background-color: $color-primary;
+            }
+        }
+    }
+}

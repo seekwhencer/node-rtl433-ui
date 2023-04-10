@@ -1,0 +1,12 @@
+.background {
+    position: fixed;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    filter: blur(3px) saturate(0) contrast(100%);
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+    transform: rotateY(180deg);
+}

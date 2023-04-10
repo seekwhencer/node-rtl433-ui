@@ -1,0 +1,60 @@
+.topic-add {
+    width: 500px;
+    right: 0;
+    position: absolute;
+    height: 200px;
+    top: 0;
+    overflow-x: auto;
+    background-color: $color-orange;
+    color: black;
+
+    &--body {
+        padding: 10px;
+    }
+
+    &--topic {
+        display: block;
+        overflow: hidden;
+
+        input {
+            font-size: $fs-s;
+            width: 100%;
+            padding: 0 10px;
+            border-radius: 5px;
+
+            &:focus-visible {
+                background-color: $color-primary-dark;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    &--device-model {
+        margin-top: 20px;
+    }
+
+    &--device-hash {
+        font-size: $fs-xs;
+    }
+
+    &--field {
+        font-size: $fs-l;
+        font-weight: 900;
+    }
+
+    &--button {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        background-color: $color-primary-dark;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $color-primary;
+        }
+    }
+
+
+}

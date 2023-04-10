@@ -1,0 +1,40 @@
+.topics {
+    width: 500px;
+    right: 0;
+    position: absolute;
+    height: calc(100% - 200px);
+    top: 200px;
+    overflow-x: auto;
+
+    &--topic {
+        font-size: $fs-xs;
+        margin-bottom: 5px;
+
+
+        &__body {
+            padding: 5px;
+            background-color: rgba($color-primary-dark, 0.5);
+        }
+
+        &__topic {
+            padding: 5px;
+            font-weight: 900;
+            font-size: $fs-l;
+        }
+
+        &__device {
+            padding: 5px;
+        }
+
+        &__fields {
+            padding: 5px;
+        }
+
+        &__field {
+        }
+
+        &__value {
+            font-weight: 900;
+        }
+    }
+}

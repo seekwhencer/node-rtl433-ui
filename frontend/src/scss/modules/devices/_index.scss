@@ -1,0 +1,138 @@
+.devices {
+    width: calc(100% - 500px);
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    align-content: flex-start;
+
+    &--device {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $color-gray-c;
+
+        &__body {
+            overflow: hidden;
+            display: block;
+            background-color: rgba($color-gray-a, 0.1);
+            padding: 3px;
+        }
+
+        &__id {
+            font-size: $fs-xs;
+            display: block;
+            overflow: hidden;
+            background-color: $color-gray-c;
+
+            table {
+            }
+
+            td {
+                text-align: center;
+                font-weight: 900;
+                padding-right: 50px;
+
+                span {
+                    font-weight: 300;
+                }
+            }
+
+            thead {
+                td {
+                    text-align: center;
+                    font-weight: 300;
+                }
+            }
+        }
+
+        &__model {
+            font-size: $fs-xxs;
+            padding: 5px;
+            text-align: center;
+        }
+
+        &__topics {
+            padding: 3px;
+            margin: 5px 0;
+            width: 500px;
+            float: left;
+
+            table {
+                width: 100%;
+            }
+        }
+
+        &__properties {
+            overflow-y: auto;
+            height: 100%;
+            width: calc(100% - 506px);
+            border-radius: 5px;
+
+            table {
+                width: 100%;
+            }
+
+
+        }
+
+        &__property {
+            font-size: $fs-xxs;
+            padding: 3px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $color-orange;
+                border-radius: 3px;
+                color: black;
+            }
+        }
+
+        &__value {
+            font-size: $fs-xxs;
+            transition: all 0.2s ease-in-out;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 900;
+            background-color: rgba($color-gray-a, 0.5);
+            text-align: center;
+
+            &.updated {
+                background-color: $color-warn;
+                transition: all 0.2s ease-in-out;
+            }
+        }
+
+        &__field {
+            font-size: $fs-xxs;
+            font-weight: 900;
+            margin-top: 10px;
+            width: 30%;
+
+            &.updated {
+                background-color: $color-warn;
+                transition: all 0.2s ease-in-out;
+            }
+        }
+
+        &__topic {
+            font-size: $fs-xxs;
+            width: 60%;
+        }
+
+
+        &:hover {
+            .devices--device__body {
+                background-color: rgba($color-primary, 0.8);
+            }
+        }
+
+        &.active {
+            .devices--device__body {
+                opacity: 1;
+            }
+        }
+    }
+}

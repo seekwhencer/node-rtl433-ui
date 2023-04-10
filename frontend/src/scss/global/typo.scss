@@ -1,0 +1,47 @@
+$font-family-primary: "Barlow";
+$font-path-primary: "./fonts/Barlow";
+
+$font-family-secondary: "Oswald";
+$font-path-secondary: "./fonts/Oswald";
+
+$font-family: $font-family-primary;
+
+// woff2 mixin
+@mixin font-face($family, $file-name, $font-path, $weight) {
+    $filepath: $font-path + "/" + $file-name + ".woff2";
+
+    @font-face {
+        font-family: "#{$family}";
+        font-weight: $weight;
+        font-display: swap;
+        src: url($filepath) format("woff2");
+    }
+}
+
+// includes
+/*@include font-face($font-family-primary, "Oswald-ExtraLight", $font-path-primary, 100);
+@include font-face($font-family-primary, "Oswald-Light", $font-path-primary, 200);
+@include font-face($font-family-primary, "Oswald-Medium", $font-path-primary, 300);
+@include font-face($font-family-primary, "Oswald-Regular", $font-path-primary, 400);
+@include font-face($font-family-primary, "Oswald-SemiBold", $font-path-primary, 500);
+@include font-face($font-family-primary, "Oswald-Bold", $font-path-primary, 600);
+*/
+
+@include font-face($font-family-primary, "barlow-v12-latin-100", $font-path-primary, 100);
+@include font-face($font-family-primary, "barlow-v12-latin-200", $font-path-primary, 200);
+@include font-face($font-family-primary, "barlow-v12-latin-300", $font-path-primary, 300);
+@include font-face($font-family-primary, "barlow-v12-latin-500", $font-path-primary, 500);
+@include font-face($font-family-primary, "barlow-v12-latin-600", $font-path-primary, 600);
+@include font-face($font-family-primary, "barlow-v12-latin-700", $font-path-primary, 700);
+
+// sizes
+$fs-xxs: 0.6em;
+$fs-xs: 0.7em;
+$fs-s: 1em;
+$fs-m: 1.25em;
+$fs-l: 1.5em;
+$fs-xl: 2em;
+$fs-xxl: 3em;
+$fs-huge: 4em;
+$fs-omg: 6em;
+$fs-jesus: 8em;

@@ -1,0 +1,35 @@
+body,
+html {
+    margin: 0;
+    color: #ddd;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-size: $fs-m;
+    background-size: cover;
+    background-position: center;
+}
+
+html {
+    background-color: #000;
+    background-image: linear-gradient(180deg, rgba($color-gray-b, 1) 0%, rgba($color-gray-c, 0.5) 100%);
+}
+
+* {
+    font-family: $font-family;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+

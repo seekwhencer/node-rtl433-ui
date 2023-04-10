@@ -1,0 +1,42 @@
+input[type=text] {
+    width: 50vw;
+    font-size: $fs-l;
+    line-height: $fs-xl;
+    border: none;
+    color: white;
+    padding: 0 15px;
+    border-radius: 5px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    &:focus {
+        border: none;
+    }
+
+    &:focus-visible {
+        border: none;
+        outline: 2px solid $color-primary-dark;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &.update {
+        background: $color-leaf;
+        outline: none;
+    }
+}
+
+.form {
+    &--element {
+        &__text {
+            label {
+                width: 100%;
+                display: block;
+                opacity: 0.5;
+            }
+
+            input[type=text] {
+
+            }
+        }
+    }
+}
