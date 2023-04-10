@@ -1,6 +1,14 @@
 # node-rtl433-ui
 
-A webserver and web-ui for [rtl_433](https://github.com/merbanan/rtl_433).
+- A web-ui and webserver and with a MQTT client
+- Using [rtl_433](https://github.com/merbanan/rtl_433) as scanner.
+- This is a simple and user guided, graphical way to map a value from a device to a MQTT topic.
+- The server can exclude devices and forgets unidentified devices after a time.
+- You can choose a value field from a device by clicking on the label.
+- Then you can enter your topic.
+- Instantly the server sends this new mapped topic to your mqtt broker. On value change.
+- The frontend is localizable. You can add and set your own language.
+
 
 ![alt text](../master/docs/screenshots/listing.png?raw=true "Screenshot device listing")
 
@@ -37,5 +45,4 @@ A webserver and web-ui for [rtl_433](https://github.com/merbanan/rtl_433).
 
 
 ---
-**Note**
- ... more readme later
+>  ... more readme later
