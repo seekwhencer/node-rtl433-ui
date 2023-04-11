@@ -33,5 +33,7 @@
     "icon description stop": "stop",
     "icon description user": "Figures and artists",
     "add topic": "add",
-    "remove topic": "remove"
+    "remove topic": "remove",
+    "exclude device": "exclude",
+    "exclude model": "exclude"
 }

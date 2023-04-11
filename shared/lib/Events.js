@@ -20,4 +20,16 @@ export default class Events {
     removeAllListeners() {
         this.event.removeAllListeners.apply(this.event, Array.from(arguments));
     }
+
+    eventNames() {
+        return this.event.eventNames.apply(this.event, Array.from(arguments));
+    }
+
+    _events() {
+        return this.event._events;
+    }
+
+    listeners() {
+        return this.event.listeners.apply(this.event, Array.from(arguments));
+    }
 }

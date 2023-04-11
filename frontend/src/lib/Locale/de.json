@@ -33,5 +33,7 @@
     "icon description stop": "stop",
     "icon description user": "Figuren und Darsteller",
     "add topic": "hinzufügen",
-    "remove topic": "entfernen"
+    "remove topic": "entfernen",
+    "exclude device": "Gerät ausblenden",
+    "exclude model": "Modell ausblenden"
 }

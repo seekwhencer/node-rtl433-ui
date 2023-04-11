@@ -43,7 +43,7 @@ export default class RTL433 extends MODULECLASS {
                 },
 
                 set: (target, prop, device) => {
-                    if (this.excludes.includes(device.data.model))
+                    if (this.excludes.includes(device.data.model)) //@TODO
                         return true;
 
                     if (device.data.model === undefined)
@@ -159,15 +159,11 @@ export default class RTL433 extends MODULECLASS {
                 resolve(false);
                 return;
             }
-
             const exists = this.topicsMapping.filter(t => t.topic === topic)[0] || false;
-            LOG(this.label, '>> EXISTS >>', exists, '');
-
             if (!exists) {
                 resolve(false);
                 return;
             }
-
             this.topicsMapping = this.topicsMapping.filter(t => t.topic !== topic);
             this.writeTopics();
             this.loadTopics();
@@ -181,6 +177,17 @@ export default class RTL433 extends MODULECLASS {
     getTopics() {
         this.keys().forEach(hash => {
             this.devices[hash].getTopics();
+        });
+    }
+
+    excludeDevice(data) {
+        return new Promise((resolve, reject) => {
+            LOG(this.label, 'EXCLUDE DEVICE', data, '');
+
+            // @TODO add to exclude list
+            // @TODO remove device or devices from list
+
+            resolve(true);
         });
     }
 }

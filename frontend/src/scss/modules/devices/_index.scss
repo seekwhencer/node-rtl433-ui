@@ -26,14 +26,18 @@
             display: block;
             overflow: hidden;
             background-color: $color-gray-c;
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 
             table {
+                height: 30px;
+                width: 100%;
             }
 
             td {
                 text-align: center;
                 font-weight: 900;
                 padding-right: 50px;
+                position: relative;
 
                 span {
                     font-weight: 300;
@@ -120,6 +124,40 @@
             width: 60%;
         }
 
+        &__td-model {
+            width: 20%;
+        }
+
+        &__td-hash {
+            width: 30%;
+        }
+
+        &__td-options {
+            width: 30%;
+        }
+
+        &__options {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            height: 100%;
+
+            button {
+                margin: 0 5px 0 0;
+                cursor: pointer;
+                background-color: $color-warn;
+                color: white;
+
+                &:hover {
+                    background-color: white;
+                    color: $color-primary-dark;
+                }
+            }
+        }
 
         &:hover {
             .devices--device__body {

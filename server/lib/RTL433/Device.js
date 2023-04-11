@@ -18,12 +18,12 @@ export default class RTL433Device extends MODULECLASS {
                 return target[prop] || this.dataSource[prop];
             },
             set: (target, prop, value) => {
-                //if (target[prop] !== value) {
-                target[prop] = value;
+                if (target[prop] !== value) {
+                    target[prop] = value;
 
-                // emit the prop
-                this.emit(prop, value);
-                //}
+                    // emit the prop
+                    this.emit(prop, value);
+                }
                 return true;
 
             }
@@ -67,10 +67,18 @@ export default class RTL433Device extends MODULECLASS {
      */
     removeTopics() {
         this.topics.forEach(topic => {
+            const eventNames = this.eventNames();
+            const events = this._events(this);
             const field = topic.data.field;
-            this.removeListener(field, topic.onProperty);
+            LOG(this.label, 'EVENTS', eventNames, events, '');
+
+            this.removeAllListeners(field);
             this.topics = this.topics.filter(t => topic.data.topic !== t.data.topic);
-        })
+        });
+
+
+
+        //eventNames.forEach(eventName => this.removeAllListeners(eventName));
     }
 
     emitIntital() {

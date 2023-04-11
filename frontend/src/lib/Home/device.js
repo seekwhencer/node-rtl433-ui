@@ -50,6 +50,8 @@ export default class Device extends MODULECLASS {
         this.target.onclick = () => this.select();
 
         this.target.querySelectorAll('[data-device-property-button]').forEach(button => button.onclick = () => this.selectProperty(button));
+        this.target.querySelector('[data-device-exclude-button]').onclick = () => this.excludeDevice();
+        this.target.querySelector('[data-model-exclude-button]').onclick = () => this.excludeModel();
 
         this.removeListener('updated', this.onPropUpdate);
         this.on('updated', (prop, value) => this.onPropUpdate(prop, value));
@@ -102,6 +104,37 @@ export default class Device extends MODULECLASS {
 
     select() {
 
+    }
+
+    excludeDevice() {
+        this.exclude({
+            hash: this.data.hash
+        });
+    }
+
+    excludeModel() {
+        this.exclude({
+            model: this.data.model
+        });
+    }
+
+    exclude(data) {
+        LOG(this.label, 'EXCLUDE DEVICE', data, this.data.hash, this.data.model);
+        return this.fetch(`${this.app.urlBase}/device/exclude`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            LOG(this.label, 'EXCLUDED:', response.data, '');
+
+            if (response.data === true) {
+                /// @TODO remove device from list
+            }
+
+            return Promise.resolve(true);
+        });
     }
 
     onPropUpdate(prop, value) {
