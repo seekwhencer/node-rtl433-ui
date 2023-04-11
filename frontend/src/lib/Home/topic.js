@@ -40,7 +40,8 @@ export default class Topic extends MODULECLASS {
         }));
         this.parent.target.append(this.target);
 
-        //this.target.onclick = () => this.select();
+        this.removeButton = this.target.querySelector('[data-remove-button]');
+        this.removeButton.onclick = () => this.remove();
     }
 
     keys() {
@@ -58,6 +59,34 @@ export default class Topic extends MODULECLASS {
 
         target.innerHTML = this.device.data.hash;
         LOG(this.label, 'UPDATING', this.data.topic);
+    }
+
+    remove() {
+        LOG(this.label, 'REMOVE', this.data.topic);
+
+        const postData = {
+            topic: this.data.topic
+        }
+
+        return this.fetch(`${this.app.urlBase}/topic/remove`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        }).then(response => {
+            LOG(this.label, 'UPDATED:', response.data, '');
+
+            if (response.data === true) {
+                this.topics.removeTopic(this.data.topic);
+            }
+
+            return Promise.resolve(true);
+        });
+    }
+
+    delete() {
+        this.target.remove();
     }
 
     get devices() {

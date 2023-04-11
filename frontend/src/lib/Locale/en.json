@@ -31,5 +31,7 @@
     "icon description skipPrev": "one back",
     "icon description skipNext": "one forward",
     "icon description stop": "stop",
-    "icon description user": "Figures and artists"
+    "icon description user": "Figures and artists",
+    "add topic": "add",
+    "remove topic": "remove"
 }

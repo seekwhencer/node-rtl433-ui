@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "16",
+          "esmodules": true
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-transform-classes",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-regenerator",
+    "@babel/plugin-syntax-import-assertions"
+  ]
+}

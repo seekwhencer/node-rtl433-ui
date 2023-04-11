@@ -1,40 +1,53 @@
 {
-  "name": "raspiscan_server",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "start": "node --experimental-modules --experimental-json-modules index.js",
-    "build": "npm run build:linux",
-    "babelize": "node  --experimental-modules --experimental-json-modules config/webpack-app-pkg.config.js",
-    "build:arm": "npm run babelize && node node_modules/pkg/lib-es5/bin.js dist/app.js --output app-arm64 --targets node14-linux-arm64",
-    "build:linux": "npm run babelize && node node_modules/pkg/lib-es5/bin.js dist/app.js --output app-linux64 --targets node14-linux-x64",
-    "build:win": "npm run babelize && node node_modules/pkg/lib-es5/bin.js dist/app.js --output app-win64 --targets node14-win-x64"
+  "name" : "raspiscan_server",
+  "version" : "0.0.1",
+  "description" : "",
+  "main" : "index.js",
+  "type" : "module",
+  "scripts" : {
+    "start" : "node --experimental-modules --experimental-json-modules index.js",
+    "build" : "npm run build:arm",
+    "babelize" : "node  --experimental-modules --experimental-json-modules config/webpack-app-pkg.config.js",
+    "build:arm" : "npm run babelize && node node_modules/pkg/lib-es5/bin.js dist/app.js --output server-arm64 --targets node16-linux-arm64",
+    "build:linux" : "npm run babelize && node node_modules/pkg/lib-es5/bin.js dist/app.js --output server-linux64 --targets node14-linux-x64",
+    "build:win" : "npm run babelize && node node_modules/pkg/lib-es5/bin.js dist/app.js --output server-win64 --targets node14-win-x64"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dateformat": "^5.0.2",
-    "dotenv": "^16.0.1",
-    "express": "^4.17.3",
-    "form-data": "^4.0.0",
-    "fs-extra": "^10.0.0",
-    "got": "^12.0.0",
-    "mqtt": "^4.3.7",
-    "pkg": "^5.5.1",
-    "ramda": "^0.28.0",
-    "ws": "^8.3.0"
+  "author" : "",
+  "license" : "ISC",
+  "pkg" : {
+    "scripts" : "dist/app.js",
+    "assets" : "",
+    "targets" : [
+      "node16-alpine-armv7"
+    ],
+    "outputPath" : "./"
   },
-  "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.16.5",
-    "@babel/plugin-syntax-top-level-await": "^7.14.5",
-    "@babel/plugin-transform-regenerator": "^7.16.5",
-    "@babel/plugin-transform-runtime": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "babel-loader": "^8.2.3",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1"
+  "compilerOptions" : {
+    "target" : "es2015",
+    "moduleResolution" : "node"
+  },
+  "dependencies" : {
+    "dateformat" : "^5.0.2",
+    "dotenv" : "^16.0.1",
+    "express" : "^4.17.3",
+    "express-ws" : "^5.0.2",
+    "form-data" : "^4.0.0",
+    "fs-extra" : "^10.0.0",
+    "got" : "^12.0.0",
+    "mqtt" : "^4.3.7",
+    "pkg" : "^5.5.1",
+    "ramda" : "^0.28.0",
+    "ws" : "^8.3.0"
+  },
+  "devDependencies" : {
+    "@babel/core" : "^7.16.5",
+    "@babel/plugin-proposal-object-rest-spread" : "^7.16.5",
+    "@babel/plugin-syntax-top-level-await" : "^7.14.5",
+    "@babel/plugin-transform-regenerator" : "^7.16.5",
+    "@babel/plugin-transform-runtime" : "^7.16.5",
+    "@babel/preset-env" : "^7.16.5",
+    "babel-loader" : "^8.2.3",
+    "webpack" : "^5.65.0",
+    "webpack-cli" : "^4.9.1"
   }
 }

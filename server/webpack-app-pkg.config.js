@@ -45,6 +45,6 @@ const config = {
 
 const bundler = webpack(config, (err, stats) => {
     if (err || stats.hasErrors()) {
-        console.log('>>> ERROR: ', err, stats);
+        console.log('>>> ERROR: ', err, stats.compilation);
     }
 });

@@ -17,6 +17,19 @@ export default class extends Route {
 
         });
 
+        this.router.post('/topic/remove', this.jsonParser);
+        this.router.post('/topic/remove', (req, res) => {
+            const topic = req.body.topic;
+
+            APP.RTL433.removeTopic(topic).then(data => {
+                res.json({
+                    message: 'remove topic',
+                    data: data
+                });
+            });
+
+        });
+
         return this.router;
     }
 }

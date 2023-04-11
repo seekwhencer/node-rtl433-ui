@@ -68,6 +68,10 @@ export default class RTL433 extends MODULECLASS {
         });
     }
 
+    keys() {
+        return Object.keys(this.devices);
+    }
+
     start() {
         const processOptions = ['-F', 'json'];
         LOG(this.label, 'STARTING WITH OPTIONS', JSON.stringify(processOptions));
@@ -147,5 +151,36 @@ export default class RTL433 extends MODULECLASS {
             resolve(true);
         });
 
+    }
+
+    removeTopic(topic) {
+        return new Promise((resolve, reject) => {
+            if (`${topic}`.trim() === '') {
+                resolve(false);
+                return;
+            }
+
+            const exists = this.topicsMapping.filter(t => t.topic === topic)[0] || false;
+            LOG(this.label, '>> EXISTS >>', exists, '');
+
+            if (!exists) {
+                resolve(false);
+                return;
+            }
+
+            this.topicsMapping = this.topicsMapping.filter(t => t.topic !== topic);
+            this.writeTopics();
+            this.loadTopics();
+
+            this.getTopics();
+
+            resolve(true);
+        });
+    }
+
+    getTopics() {
+        this.keys().forEach(hash => {
+            this.devices[hash].getTopics();
+        });
     }
 }

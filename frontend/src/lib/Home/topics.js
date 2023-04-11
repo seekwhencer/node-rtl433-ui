@@ -70,7 +70,14 @@ export default class Topics extends MODULECLASS {
 
         const addTopicButton = this.targetAddTopic.querySelector('[data-add-button]');
         addTopicButton.onclick = () => this.submitAddTopic(topicData);
+    }
 
+    removeTopic(topic) {
+        this.data[topic].delete();
+        delete this.data[topic];
+        this.getAll().then(() => {
+            this.devices.keys().forEach(hash => this.devices.data[hash].drawTopics());
+        });
 
     }
 
@@ -94,13 +101,14 @@ export default class Topics extends MODULECLASS {
             LOG(this.label, 'UPDATED:', response.data, '');
 
             if (response.data === true) {
-                this.getAll();
-                this.targetAddTopic.innerHTML = '';
+                this.getAll().then(() => {
+                    this.devices.keys().forEach(hash => this.devices.data[hash].drawTopics());
+                    this.targetAddTopic.innerHTML = '';
+                });
             }
 
             return Promise.resolve(true);
         });
-
     }
 
     get devices() {

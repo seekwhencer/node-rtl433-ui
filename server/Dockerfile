@@ -23,6 +23,8 @@ COPY shared/package.json .
 RUN npm install
 COPY . .
 
+RUN npm install pkg -g
+
 RUN chown -R 1000:1000 /root/.npm
 
 WORKDIR /raspiscan

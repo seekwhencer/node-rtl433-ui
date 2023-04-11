@@ -65,7 +65,7 @@ export default class Devices extends MODULECLASS {
     }
 
     keys() {
-        return Object.keys({...this.data});
+        return Object.keys(this.data);
     }
 
 }

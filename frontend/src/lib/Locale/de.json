@@ -31,5 +31,7 @@
     "icon description skipPrev": "eins zurück",
     "icon description skipNext": "eins weiter",
     "icon description stop": "stop",
-    "icon description user": "Figuren und Darsteller"
+    "icon description user": "Figuren und Darsteller",
+    "add topic": "hinzufügen",
+    "remove topic": "entfernen"
 }

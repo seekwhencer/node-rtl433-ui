@@ -9,7 +9,7 @@
     &--topic {
         font-size: $fs-xs;
         margin-bottom: 5px;
-
+        position: relative;
 
         &__body {
             padding: 5px;
@@ -35,6 +35,21 @@
 
         &__value {
             font-weight: 900;
+        }
+
+        &__button {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: rgba($color-warn, 0.6);
+            color: white;
+
+            &:hover {
+                background-color: white;
+                color: $color-primary-dark;
+            }
         }
     }
 }
