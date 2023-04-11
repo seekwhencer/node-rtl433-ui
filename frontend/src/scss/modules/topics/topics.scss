@@ -7,7 +7,6 @@
     overflow-x: auto;
 
     &--topic {
-        font-size: $fs-xs;
         margin-bottom: 5px;
         position: relative;
 
@@ -17,20 +16,25 @@
         }
 
         &__topic {
-            padding: 5px;
+            padding: 0 5px;
             font-weight: 900;
-            font-size: $fs-l;
+            font-size: $fs-xs;
         }
 
         &__device {
-            padding: 5px;
+            padding: 0 5px;
+            font-size: $fs-xxs;
+            font-weight: 300;
+            color: rgba(white, 0.3);
         }
 
         &__fields {
             padding: 5px;
+            font-size: $fs-xxs;
         }
 
         &__field {
+            font-weight: 400;
         }
 
         &__value {
@@ -38,10 +42,11 @@
         }
 
         &__button {
+            font-size: $fs-xxs;
             position: absolute;
             right: 20px;
             bottom: 20px;
-            padding: 10px 20px;
+            padding: 5px 10px;
             cursor: pointer;
             background-color: rgba($color-warn, 0.6);
             color: white;
@@ -50,6 +55,10 @@
                 background-color: white;
                 color: $color-primary-dark;
             }
+        }
+
+        &:hover {
+            background-color: rgba($color-primary, 0.8);
         }
     }
 }

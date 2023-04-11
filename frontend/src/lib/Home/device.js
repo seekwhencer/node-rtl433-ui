@@ -33,9 +33,11 @@ export default class Device extends MODULECLASS {
         delete data.id;
         delete data.channel;
         delete data.model;
+        delete data.hash;
 
         this.target = this.toDOM(DeviceTemplate({
             scope: {
+                hash: this.data.hash,
                 model: this.data.model,
                 id: this.data.id,
                 channel: this.data.channel,
@@ -152,7 +154,7 @@ export default class Device extends MODULECLASS {
         const target = this.target.querySelector(`[data-topic-value=${topic.data.field}]`);
         target.classList.add('updated');
         target.innerHTML = value;
-        setTimeout(() => target.classList.remove('updated'), 2000);
+        setTimeout(() => target.classList.remove('updated'), 4000);
     }
 
     onTopicsUpdate() {

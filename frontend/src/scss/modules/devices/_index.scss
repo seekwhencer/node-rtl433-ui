@@ -67,6 +67,27 @@
             table {
                 width: 100%;
             }
+
+            .devices--device__value {
+                &.updated {
+                    animation: blink-animation 0.25s infinite;
+                    transition-duration: 0s;
+
+                    @keyframes blink-animation {
+                        0% {
+                            background-color: black;
+                        }
+
+                        50% {
+                            background-color: $color-splash;
+                        }
+
+                        100% {
+                            background-color: $color-splash;
+                        }
+                    }
+                }
+            }
         }
 
         &__properties {
@@ -102,7 +123,7 @@
             text-align: center;
 
             &.updated {
-                background-color: $color-warn;
+                background-color: $color-splash;
                 transition: all 0.2s ease-in-out;
             }
         }
@@ -114,7 +135,7 @@
             width: 30%;
 
             &.updated {
-                background-color: $color-warn;
+                background-color: $color-splash;
                 transition: all 0.2s ease-in-out;
             }
         }
@@ -151,6 +172,7 @@
                 cursor: pointer;
                 background-color: $color-warn;
                 color: white;
+                font-size: $fs-s;
 
                 &:hover {
                     background-color: white;
@@ -159,15 +181,28 @@
             }
         }
 
-        &:hover {
-            .devices--device__body {
-                background-color: rgba($color-primary, 0.8);
-            }
-        }
-
         &.active {
             .devices--device__body {
                 opacity: 1;
+                background-color: rgba(white, 0.05);
+            }
+
+            &:hover {
+                opacity: 1;
+
+                .devices--device__options {
+                    opacity: 1;
+                }
+            }
+
+            .devices--device__options {
+                opacity: 0.2;
+            }
+        }
+
+        &:hover {
+            .devices--device__body {
+                background-color: rgba($color-primary, 0.8);
             }
         }
     }
