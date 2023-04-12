@@ -36,9 +36,17 @@ export default class Devices extends MODULECLASS {
     }
 
     getAll() {
+        if (!this.parent.parent.navigation.refresh) {
+            return Promise.resolve(false);
+        }
+
         return this.fetch(`${this.app.urlBase}/devices`).then(raw => {
             this.raw = raw.data;
             this.raw.forEach(deviceData => this.addDevice(deviceData));
+
+            //@TODO check if some devices where dropped
+            this.checkRemoved();
+
             this.order('time');
             this.emit('complete');
             return Promise.resolve(true);
@@ -66,6 +74,22 @@ export default class Devices extends MODULECLASS {
 
     keys() {
         return Object.keys(this.data);
+    }
+
+    checkRemoved() {
+        this.keys().forEach(hash => this.data[hash].checkRemoved());
+    }
+
+    removeDevice(device) {
+        delete this.data[device.data.hash];
+    }
+
+    get models() {
+        return this.data.map(device => device.data.model);
+    }
+
+    set models(val) {
+        // nothing
     }
 
 }

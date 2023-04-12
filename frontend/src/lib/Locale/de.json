@@ -35,5 +35,6 @@
     "add topic": "hinzufügen",
     "remove topic": "entfernen",
     "exclude device": "Gerät ausblenden",
-    "exclude model": "Modell ausblenden"
+    "exclude model": "Modell ausblenden",
+    "refresh devices" : "Geräte automatisch aktualisieren"
 }

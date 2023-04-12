@@ -2,6 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import {spawn} from 'child_process';
 import Device from './Device.js';
+import Topics from './Topics.js';
+import Excludes from './Excludes.js';
 
 export default class RTL433 extends MODULECLASS {
     constructor(parent) {
@@ -13,19 +15,12 @@ export default class RTL433 extends MODULECLASS {
             this.label = 'RTL433';
             LOG(this.label, 'INIT');
 
-            this.excludesFile = path.resolve('../rtl_433/excludes.json');
-            this.topicsMappingFile = path.resolve('../rtl_433/mapping.json');
-            this.loadTopics();
-            this.loadExcludes();
-
             this.bin = '/usr/local/bin/rtl_433';
-            this.tty = false;
-            this.data = [];
             this.raw = '';
 
             this.on('device-added', device => {
                 // emit initial data "change" for all data properties
-                device.emitIntital();
+                device.emitInitial();
 
                 //APP.WEBSERVER.sendWS(JSON.stringify(device.data));
             });
@@ -35,6 +30,10 @@ export default class RTL433 extends MODULECLASS {
                 //console.log(this.label, 'DEVICES UPDATED:', JSON.stringify(device.data));
             });
 
+            //
+            this.topics = new Topics(this);
+            this.excludes = new Excludes(this);
+
             this.devicesSource = {};
             this.devices = new Proxy(this.devicesSource, {
 
@@ -43,7 +42,7 @@ export default class RTL433 extends MODULECLASS {
                 },
 
                 set: (target, prop, device) => {
-                    if (this.excludes.includes(device.data.model)) //@TODO
+                    if (this.excludes.contains(device))
                         return true;
 
                     if (device.data.model === undefined)
@@ -61,9 +60,7 @@ export default class RTL433 extends MODULECLASS {
                 }
             });
 
-
             this.start();
-
             resolve(this);
         });
     }
@@ -103,91 +100,37 @@ export default class RTL433 extends MODULECLASS {
         });
     }
 
-    loadTopics() {
-        fs.readFile(this.topicsMappingFile, (err, data) => this.topicsMapping = JSON.parse(data.toString()));
-    }
-
-    loadExcludes() {
-        fs.readFile(this.excludesFile, (err, data) => this.excludes = JSON.parse(data.toString()));
-    }
-
-    writeTopics() {
-        fs.writeFile(this.topicsMappingFile, JSON.stringify(this.topicsMapping), (err, data) => {
-        });
-    }
 
     reload() {
-        this.loadTopics();
-        this.loadExcludes();
+        this.topics.load();
+        this.excludes.load();
     }
 
     addTopic(data) {
-        return new Promise((resolve, reject) => {
-            if (`${data.topic}`.trim() === '') {
-                resolve(false);
-                return;
-            }
-
-            const exists = this.topicsMapping.filter(t => t.topic === data.topic)[0] || false;
-            LOG(this.label, '>>>>', exists, '');
-
-            if (exists) {
-                resolve(false);
-                return;
-            }
-
-            const newTopic = {
-                topic: data.topic,
-                hash: data.hash,
-                field: data.field
-            };
-
-            this.topicsMapping.push(newTopic);
-            this.writeTopics();
-
-            this.devices[data.hash].getTopics();
-
-
-            resolve(true);
-        });
-
+        return this.topics.add(data);
     }
 
     removeTopic(topic) {
-        return new Promise((resolve, reject) => {
-            if (`${topic}`.trim() === '') {
-                resolve(false);
-                return;
-            }
-            const exists = this.topicsMapping.filter(t => t.topic === topic)[0] || false;
-            if (!exists) {
-                resolve(false);
-                return;
-            }
-            this.topicsMapping = this.topicsMapping.filter(t => t.topic !== topic);
-            this.writeTopics();
-            this.loadTopics();
-
-            this.getTopics();
-
-            resolve(true);
-        });
+        return this.topics.remove(topic);
     }
 
     getTopics() {
-        this.keys().forEach(hash => {
-            this.devices[hash].getTopics();
+        this.keys().forEach(hash => this.devices[hash].getTopics());
+    }
+
+    addExclude(data) {
+        return this.excludes.add(data).then(ok => {
+            this.removeExcluded();
+            return Promise.resolve(ok);
         });
     }
 
-    excludeDevice(data) {
-        return new Promise((resolve, reject) => {
-            LOG(this.label, 'EXCLUDE DEVICE', data, '');
+    removeExcluded() {
+        this.keys().forEach(hash => this.devices[hash].checkExcluded());
+    }
 
-            // @TODO add to exclude list
-            // @TODO remove device or devices from list
-
-            resolve(true);
-        });
+    removeDevice(device) {
+        LOG(this.label, 'DELETED', device.data.model, device.data.hash);
+        delete this.devices[device.data.hash];
     }
 }

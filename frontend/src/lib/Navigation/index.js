@@ -6,43 +6,28 @@ export default class Navigation extends MODULECLASS {
         this.label = 'NAVIGATION';
         LOG(this.label, 'INIT');
 
-
         this.target = this.toDOM(NavigationTemplate({
-            scope: {
-                icons: {
-                    home: this.app.icons.home(),
-                    options: this.app.icons.options(),
-                    user: this.app.icons.user(),
-                    book: this.app.icons.book(),
-                    music: this.app.icons.music(),
-                    podcast: this.app.icons.podcast(),
-                    like: this.app.icons.heart(),
-                },
-            }
+            scope: {}
         }));
         this.parent.target.append(this.target);
-        this.menu = this.target.querySelectorAll('[data-navigation]');
 
-        this.menu.forEach(button => button.onclick = () => {
-            button.blur();
-            this.emit('tab', button.getAttribute('data-navigation'))
-        });
+        this.refreshSwitch = this.target.querySelector('[data-navigation-refresh]');
+        this.refreshSwitch.onclick = () => this.toggleRefresh();
 
-        this.on('tab', tab => {
-            this.app.emit('tab', tab);
-        });
-
+        this.refresh = true;
     }
 
-    select(tab) {
-        this.menu.forEach(b => b.classList.remove('active'));
-        const target = this.target.querySelector(`[data-navigation=${tab}]`);
-        target ? target.classList.toggle('active') : null;
+    toggleRefresh() {
+        this.refresh ? this.refresh = false : this.refresh = true;
+        LOG(this.label, 'TOGGLE REFRESH', this.refresh);
     }
 
-    draw() {
-
+    get refresh() {
+        return this._refresh;
     }
 
-
+    set refresh(val) {
+        this._refresh = val;
+        this.refresh ? this.refreshSwitch.classList.add('active') : this.refreshSwitch.classList.remove('active');
+    }
 }

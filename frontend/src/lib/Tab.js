@@ -9,7 +9,6 @@ export default class Tab extends MODULECLASS {
 
     show() {
         LOG(this.label, 'SHOW TAB', this.tab);
-        this.app.navigation.select(this.tab);
 
         this.hideAll();
         this.target.classList.add('active');

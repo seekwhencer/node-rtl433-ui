@@ -53,12 +53,10 @@ export default class Topic extends MODULECLASS {
             return;
 
         const target = this.target.querySelector('[data-topic-device]');
-
         if (target.innerHTML === this.device.data.hash)
             return;
 
         target.innerHTML = this.device.data.hash;
-        LOG(this.label, 'UPDATING', this.data.topic);
     }
 
     remove() {

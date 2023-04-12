@@ -7,73 +7,58 @@
     border-bottom: 2px solid $color-primary-dark;
     top: 0;
     overflow: hidden;
-    display: none;
+    display: block;
 
-    &--list {
+    &--refresh {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        background-color: rgba(white, 0.1);
+        padding: 2px 10px;
+        border-radius: 22px;
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: stretch;
+        align-items: center;
+        justify-content: right;
 
-        &__item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px;
-            border-radius: 10px;
-            background: black;
-            border: 2px solid $color-primary-dark;
-            color: $color-primary;
+        &__switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            display: inline-block;
+            background-color: $color-warn;
+            border-radius: 50px;
             cursor: pointer;
-            transition: opacity ease-in-out 0.4s;
+            transition: all 0.2s ease-in-out;
+            margin: 5px;
 
-            svg {
-                width: 40px;
-                height: 40px;
-                margin: 5px 20px;
-                transition: all ease-in-out 0.1s;
-            }
-
-            &:hover,
-            &.active {
-                background-color: $color-primary-dark;
-                color: white;
-                margin: 10px 20px 0;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transition: all ease-in-out 0.1s;
-                border-bottom-width: 0;
+            &:before {
+                position: absolute;
+                content: "";
+                left: 4px;
+                top: 4px;
+                width: 18px;
+                height: 18px;
+                background-color: white;
+                border-radius: 18px;
+                transition: all 0.2s ease-in-out;
             }
 
             &.active {
-                svg {
-                    transform: scale(1.2);
+                background-color: $color-primary;
+                transition: all 0.2s ease-in-out;
+
+                &:before {
+                    transform: translateX(24px);
+                    transition: all 0.2s ease-in-out;
                 }
             }
+        }
 
-            &:hover {
-                background-color: $color-primary-darkest;
-            }
-
-            &.disabled {
-                opacity: 0.3;
-                cursor: initial;
-                transition: all ease-in-out 0.4s;
-
-                &:hover,
-                &.active {
-                    margin: 20px;
-                    border-bottom-left-radius: 10px;
-                    border-bottom-right-radius: 10px;
-                    border-bottom-width: 2px;
-
-                    svg {
-                        transform: scale(1);
-                        color: $color-primary-dark;
-                    }
-                }
-            }
+        &__label {
+            font-size: $fs-xs;
+            line-height: 20px;
+            display: inline-block;
+            margin: 5px;
         }
     }
 }

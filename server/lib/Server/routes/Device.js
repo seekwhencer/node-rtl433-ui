@@ -8,7 +8,7 @@ export default class extends Route {
         this.router.post('/device/exclude', (req, res) => {
             const params = req.body;
 
-            APP.RTL433.excludeDevice(params).then(data => {
+            APP.RTL433.addExclude(params).then(data => {
                 res.json({
                     message: 'exclude device',
                     data: data

@@ -4,13 +4,11 @@ import DeviceTopic from './DeviceTopic.js';
 export default class RTL433Device extends MODULECLASS {
     constructor(parent, deviceData) {
         super(parent);
-        this.label = 'RTL433 DEVICE';
         this.parent = parent;
-        this.topicsMapping = this.parent.topicsMapping;
+        this.label = 'RTL433 DEVICE';
 
         // a device can have multiple topics on different value fields
         this.topics = [];
-        this.is_excluded = false;
 
         this.dataSource = deviceData;
         this.data = new Proxy(this.dataSource, {
@@ -25,7 +23,6 @@ export default class RTL433Device extends MODULECLASS {
                     this.emit(prop, value);
                 }
                 return true;
-
             }
         });
 
@@ -67,23 +64,50 @@ export default class RTL433Device extends MODULECLASS {
      */
     removeTopics() {
         this.topics.forEach(topic => {
-            const eventNames = this.eventNames();
-            const events = this._events(this);
             const field = topic.data.field;
-            LOG(this.label, 'EVENTS', eventNames, events, '');
+
+            //const eventNames = this.eventNames();
+            //const events = this._events(this);
+            //LOG(this.label, 'EVENTS', eventNames, events, '');
 
             this.removeAllListeners(field);
             this.topics = this.topics.filter(t => topic.data.topic !== t.data.topic);
         });
-
-
-
-        //eventNames.forEach(eventName => this.removeAllListeners(eventName));
     }
 
-    emitIntital() {
+    emitInitial() {
         // emit on create
         Object.keys(this.dataSource).forEach(field => this.emit(field, this.data[field]));
     }
+
+    checkExcluded() {
+        if (this.excludes.hashes.includes(this.data.hash) || this.excludes.models.includes(this.data.model)) {
+            // remove the device
+            this.remove();
+        }
+    }
+
+    remove() {
+        this.removeTopics();
+        Object.keys(this.data).forEach(field => this.removeAllListeners(field));
+        this.parent.removeDevice(this);
+    }
+
+    get topicsMapping() {
+        return this.parent.topics.data;
+    }
+
+    set topicsMapping(val) {
+        // nothing
+    }
+
+    get excludes() {
+        return this.parent.excludes;
+    }
+
+    set excludes(val) {
+        // nothing
+    }
+
 
 }

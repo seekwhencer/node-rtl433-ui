@@ -5,7 +5,7 @@ export default class extends Route {
         super(parent, options);
 
         this.router.get('/topics', (req, res) => {
-            const topics = APP.RTL433.topicsMapping;
+            const topics = APP.RTL433.topics.data;
             res.json({
                 message: 'all topics',
                 data: topics

@@ -55,10 +55,10 @@ export default class Device extends MODULECLASS {
         this.target.querySelector('[data-device-exclude-button]').onclick = () => this.excludeDevice();
         this.target.querySelector('[data-model-exclude-button]').onclick = () => this.excludeModel();
 
-        this.removeListener('updated', this.onPropUpdate);
+        this.removeAllListeners('updated');
         this.on('updated', (prop, value) => this.onPropUpdate(prop, value));
 
-        this.removeListener('topics', this.onTopicsUpdate);
+        this.removeAllListeners('topics');
         this.on('topics', () => this.onTopicsUpdate());
 
         this.drawTopics();
@@ -85,7 +85,7 @@ export default class Device extends MODULECLASS {
         // register a listener on topic field changes
         // this is the magic !!!
         // the event invoked by the proxy setter by emitting the topic field
-        this.topics.forEach(topic => this.removeListener(topic.data.field, this.onTopicUpdate));
+        this.topics.forEach(topic => this.removeAllListeners(topic.data.field));
         this.topics.forEach(topic => this.on(topic.data.field, value => this.onTopicUpdate(topic, value)));
 
         // set the device as active
@@ -162,6 +162,20 @@ export default class Device extends MODULECLASS {
         this.drawTopics();
     }
 
+    checkRemoved() {
+        const hashes = this.parent.raw.map(i => i.hash);
+        if (!hashes.includes(this.data.hash))
+            this.remove();
+    }
+
+    remove() {
+        this.removeAllListeners('updated');
+        this.removeAllListeners('topics');
+        this.topics.forEach(topic => this.removeAllListeners(topic.data.field));
+        this.target.remove();
+        this.parent.removeDevice(this);
+    }
+
     get topics() {
         const topics = [];
         const availableTopics = this.parent.parent.topics.data;
@@ -188,9 +202,9 @@ export default class Device extends MODULECLASS {
         return topics;
     }
 
-// not used
-    set topics(val) {
-    }
 
+    set topics(val) {
+        // nothing
+    }
 
 }
