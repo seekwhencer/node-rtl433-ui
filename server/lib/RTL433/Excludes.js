@@ -53,6 +53,11 @@ export default class RTL433Excludes extends MODULECLASS {
 
     remove(data) {
         return new Promise((resolve, reject) => {
+            LOG(this.label, 'REMOVE', data, '');
+
+            this.data = this.data.filter(ex => ex[data.field] !== data.value);
+            this.write();
+
             resolve(true);
         });
     }

@@ -2,6 +2,7 @@ import Tab from '../Tab.js';
 import LayoutTemplate from "./Templates/layout.html";
 import Devices from './devices.js';
 import Topics from './topics.js';
+import Excludes from './excludes.js';
 
 export default class Home extends Tab {
     constructor(parent, options) {
@@ -18,11 +19,10 @@ export default class Home extends Tab {
 
         this.topics = new Topics(this);
         this.devices = new Devices(this);
+        this.excludes = new Excludes(this);
 
         this.topics.on('complete', () => this.devices.startInterval());
         this.devices.on('complete', () => this.topics.update());
-
-
     }
 
     show() {

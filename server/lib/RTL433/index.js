@@ -133,4 +133,8 @@ export default class RTL433 extends MODULECLASS {
         LOG(this.label, 'DELETED', device.data.model, device.data.hash);
         delete this.devices[device.data.hash];
     }
+
+    removeExclude(data) {
+        return this.excludes.remove(data);
+    }
 }

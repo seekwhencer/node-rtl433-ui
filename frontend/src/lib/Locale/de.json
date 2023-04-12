@@ -36,5 +36,8 @@
     "remove topic": "entfernen",
     "exclude device": "Gerät ausblenden",
     "exclude model": "Modell ausblenden",
-    "refresh devices" : "Geräte automatisch aktualisieren"
+    "refresh devices" : "Geräte automatisch aktualisieren",
+    "topics": "Topics",
+    "excludes": "Ausschlüsse",
+    "remove exclude": "entfernen"
 }

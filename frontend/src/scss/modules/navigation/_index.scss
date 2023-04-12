@@ -9,7 +9,8 @@
     overflow: hidden;
     display: block;
 
-    &--refresh {
+    &--refresh,
+    &--side {
         position: absolute;
         top: 25px;
         left: 25px;
@@ -59,6 +60,15 @@
             line-height: 20px;
             display: inline-block;
             margin: 5px;
+        }
+    }
+
+    &--side {
+        left: inherit;
+        right: 20px;
+
+        &__switch {
+            background-color: $color-primary;
         }
     }
 }

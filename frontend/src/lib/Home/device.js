@@ -132,7 +132,7 @@ export default class Device extends MODULECLASS {
             LOG(this.label, 'EXCLUDED:', response.data, '');
 
             if (response.data === true) {
-                /// @TODO remove device from list
+                this.parent.parent.excludes.getAll();
             }
 
             return Promise.resolve(true);

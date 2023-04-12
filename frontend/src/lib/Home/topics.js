@@ -111,6 +111,16 @@ export default class Topics extends MODULECLASS {
         });
     }
 
+    show() {
+        this.target.classList.add('active');
+        this.targetAddTopic.classList.add('active');
+    }
+
+    hide() {
+        this.target.classList.remove('active');
+        this.targetAddTopic.classList.remove('active');
+    }
+
     get devices() {
         return this.parent.devices;
     }

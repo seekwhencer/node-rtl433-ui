@@ -36,5 +36,8 @@
     "remove topic": "remove",
     "exclude device": "exclude",
     "exclude model": "exclude",
-    "refresh devices": "refresh devices"
+    "refresh devices": "refresh devices",
+    "topics": "Topics",
+    "excludes": "Excludes",
+    "remove exclude": "remove exclude"
 }

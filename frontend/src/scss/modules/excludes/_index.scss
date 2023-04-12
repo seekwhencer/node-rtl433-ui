@@ -1,9 +1,8 @@
-.topics {
+.excludes {
     width: 500px;
     right: 0;
     position: absolute;
-    height: calc(100% - 200px);
-    top: 200px;
+    height: 100%;
     overflow-x: auto;
     display: none;
 
@@ -11,46 +10,30 @@
         display: block;
     }
 
-    &--topic {
+    &--exclude {
         margin-bottom: 5px;
         position: relative;
 
         &__body {
-            padding: 5px;
+            padding: 5px 10px;
             background-color: rgba($color-primary-dark, 0.5);
         }
 
-        &__topic {
-            padding: 0 5px;
-            font-weight: 900;
-            font-size: $fs-xs;
-        }
-
-        &__device {
-            padding: 0 5px;
-            font-size: $fs-xxs;
-            font-weight: 300;
-            color: rgba(white, 0.3);
-        }
-
-        &__fields {
-            padding: 5px;
-            font-size: $fs-xxs;
-        }
-
         &__field {
-            font-weight: 400;
+            font-weight: 300;
+            font-size: $fs-xs;
         }
 
         &__value {
             font-weight: 900;
+            font-size: $fs-s;
         }
 
         &__button {
             font-size: $fs-xxs;
             position: absolute;
             right: 20px;
-            bottom: 20px;
+            bottom: 10px;
             padding: 5px 10px;
             cursor: pointer;
             background-color: rgba($color-warn, 0.6);

@@ -52,11 +52,11 @@
 - server can update mapping at runtime
 - mapping a **device** and **field** to a **topic** per web ui.
 - frontend language can be edited and set
+- drop topic
+- add model to exclude list
+- add device to exclude list
 
 ### Roadmap
-- drop topic
-- drop device
-- add device to exclude list
 - drop entry from exclude list
 - forget unmapped device after x seconds / minutes
 
