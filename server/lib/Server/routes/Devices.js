@@ -31,6 +31,15 @@ export default class extends Route {
             });
         });
 
+        this.router.get('/devices/forget', (req, res) => {
+            APP.RTL433.toggleForget();
+
+            res.json({
+                message: 'reload',
+                data: APP.RTL433.forget
+            });
+        });
+
         return this.router;
     }
 }

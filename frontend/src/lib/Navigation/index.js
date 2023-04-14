@@ -20,7 +20,11 @@ export default class Navigation extends MODULECLASS {
         this.orderSwitch = this.target.querySelector('[data-navigation-order]');
         this.orderSwitch.onclick = () => this.toggleOrdering();
 
+        this.forgetSwitch = this.target.querySelector('[data-navigation-forget]');
+        this.forgetSwitch.onclick = () => this.toggleForget();
+
         this.refresh = true;
+        this.forget = true;
     }
 
     toggleRefresh() {
@@ -46,6 +50,12 @@ export default class Navigation extends MODULECLASS {
         LOG(this.label, 'TOGGLE ORDERING', this.order);
     }
 
+    toggleForget() {
+        return this.fetch(`${this.app.urlBase}/devices/forget`).then(raw => this.forget = raw.data);
+    }
+
+    //// getter 'n setter
+
     get refresh() {
         return this._refresh;
     }
@@ -54,7 +64,6 @@ export default class Navigation extends MODULECLASS {
         this._refresh = val;
         this.refresh ? this.refreshSwitch.classList.add('active') : this.refreshSwitch.classList.remove('active');
     }
-
 
     get side() {
         return this._side;
@@ -74,6 +83,15 @@ export default class Navigation extends MODULECLASS {
         this.orderBy = this.order ? 'count' : 'time';
         this.parent.tabs.home.devices.order(this.orderBy);
         this.order ? this.orderSwitch.classList.add('active') : this.orderSwitch.classList.remove('active');
+    }
+
+    get forget() {
+        return this._forget;
+    }
+
+    set forget(val) {
+        this._forget = val;
+        this.forget ? this.forgetSwitch.classList.add('active') : this.forgetSwitch.classList.remove('active');
     }
 
 

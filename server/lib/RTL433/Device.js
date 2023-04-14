@@ -27,6 +27,7 @@ export default class RTL433Device extends MODULECLASS {
         });
 
         this.data.hash = `${Crypto.createHash('md5').update(`${this.data.id}${this.data.model}${this.data.channel}${this.data.protocol}${this.data.button}`).digest("hex")}`;
+        this.time_create = this.data.time;
         this.getTopics();
     }
 
@@ -91,6 +92,24 @@ export default class RTL433Device extends MODULECLASS {
         this.removeTopics();
         Object.keys(this.data).forEach(field => this.removeAllListeners(field));
         this.parent.removeDevice(this);
+    }
+
+    checkAge() {
+        const create = new Date(this.time_create).getTime();
+        const now = Date.now();
+        this.data.age = parseInt((now - create) / 1000);
+
+        if (this.topics.length === 0) {
+            this.data.livetime = (DEVICE_UNMAPPED_AGE_MAX || 120) - this.data.age;
+        } else {
+            this.data.livetime = 'always';
+        }
+
+        if (this.data.livetime < 0)
+            this.data.livetime = 0;
+
+        if (this.data.livetime === 0 && this.parent.forget)
+            this.remove();
     }
 
     get topicsMapping() {

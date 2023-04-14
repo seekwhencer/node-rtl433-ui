@@ -34,6 +34,7 @@ export default class Device extends MODULECLASS {
         delete data.channel;
         delete data.model;
         delete data.hash;
+        delete data.age;
 
         this.target = this.toDOM(DeviceTemplate({
             scope: {

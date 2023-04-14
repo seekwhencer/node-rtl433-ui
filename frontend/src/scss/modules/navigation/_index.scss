@@ -11,7 +11,8 @@
 
     &--refresh,
     &--side,
-    &--order {
+    &--order,
+    &--forget {
         position: absolute;
         top: 25px;
         left: 25px;
@@ -73,21 +74,30 @@
         }
     }
 
-    &--order {
-        top: 45px;
+    &--order,
+    &--forget {
+        top: 25px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(calc(-100% - 20px));
 
         &__title {
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             font-size: $fs-xxs;
         }
 
         &__switch {
             background-color: $color-primary;
+        }
+    }
+
+    &--forget {
+        transform: translateX(10px);
+
+        &__switch {
+            background-color: $color-warn;
         }
     }
 }

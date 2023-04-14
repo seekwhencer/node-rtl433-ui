@@ -22,11 +22,13 @@ export default class RTL433 extends MODULECLASS {
                 // emit initial data "change" for all data properties
                 device.emitInitial();
                 device.data.count = 1;
+                device.checkAge();
                 //APP.WEBSERVER.sendWS(JSON.stringify(device.data));
             });
 
             this.on('device-updated', device => {
                 device.data.count++;
+                device.checkAge();
                 //console.log();
                 //console.log(this.label, 'DEVICES UPDATED:', JSON.stringify(device.data));
             });
@@ -62,6 +64,11 @@ export default class RTL433 extends MODULECLASS {
             });
 
             this.start();
+
+            // check every second, if an unmapped device is over age
+            this.forget = true;
+            this.checkAgeInterval = setInterval(() => this.checkAge(), 1000);
+
             resolve(this);
         });
     }
@@ -137,5 +144,13 @@ export default class RTL433 extends MODULECLASS {
 
     removeExclude(data) {
         return this.excludes.remove(data);
+    }
+
+    checkAge() {
+        this.keys().forEach(hash => this.devices[hash].checkAge());
+    }
+
+    toggleForget() {
+        this.forget ? this.forget = false : this.forget = true;
     }
 }

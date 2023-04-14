@@ -42,5 +42,6 @@
     "remove exclude": "remove exclude",
     "order by": "order by",
     "time": "time",
-    "count": "count"
+    "count": "count",
+    "forget": "forget"
 }
