@@ -47,7 +47,7 @@ export default class Devices extends MODULECLASS {
             //@TODO check if some devices where dropped
             this.checkRemoved();
 
-            this.order('time');
+            this.order(this.parent.parent.navigation.orderBy || 'time');
             this.emit('complete');
             return Promise.resolve(true);
         });
@@ -59,7 +59,9 @@ export default class Devices extends MODULECLASS {
     }
 
     order(by) {
-        const orderValues = Object.keys(this.data).map(hash => `${this.data[hash].data[by]}__${this.data[hash].data.hash}`);
+        const orderValues = Object.keys(this.data).map(hash => `A${this.data[hash].data[by].toString().padStart('100','0')}__${this.data[hash].data.hash}`);
+
+        //LOG(this.label, 'ORDER', by, 'VALUES', orderValues);
         orderValues.sort();
         orderValues.reverse();
 

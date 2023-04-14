@@ -39,5 +39,8 @@
     "refresh devices" : "Geräte automatisch aktualisieren",
     "topics": "Topics",
     "excludes": "Ausschlüsse",
-    "remove exclude": "entfernen"
+    "remove exclude": "entfernen",
+    "order by": "sortieren",
+    "time": "Zeit",
+    "count": "Zähler"
 }

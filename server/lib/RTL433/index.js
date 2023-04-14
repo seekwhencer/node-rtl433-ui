@@ -21,11 +21,12 @@ export default class RTL433 extends MODULECLASS {
             this.on('device-added', device => {
                 // emit initial data "change" for all data properties
                 device.emitInitial();
-
+                device.data.count = 1;
                 //APP.WEBSERVER.sendWS(JSON.stringify(device.data));
             });
 
             this.on('device-updated', device => {
+                device.data.count++;
                 //console.log();
                 //console.log(this.label, 'DEVICES UPDATED:', JSON.stringify(device.data));
             });

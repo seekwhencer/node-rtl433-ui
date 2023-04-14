@@ -10,7 +10,8 @@
     display: block;
 
     &--refresh,
-    &--side {
+    &--side,
+    &--order {
         position: absolute;
         top: 25px;
         left: 25px;
@@ -66,6 +67,24 @@
     &--side {
         left: inherit;
         right: 20px;
+
+        &__switch {
+            background-color: $color-primary;
+        }
+    }
+
+    &--order {
+        top: 45px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &__title {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: $fs-xxs;
+        }
 
         &__switch {
             background-color: $color-primary;

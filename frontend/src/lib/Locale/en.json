@@ -39,5 +39,8 @@
     "refresh devices": "refresh devices",
     "topics": "Topics",
     "excludes": "Excludes",
-    "remove exclude": "remove exclude"
+    "remove exclude": "remove exclude",
+    "order by": "order by",
+    "time": "time",
+    "count": "count"
 }
