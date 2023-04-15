@@ -46,7 +46,7 @@
 --
 
 ## Features
-- server works as MQTT client to you broker
+- server works as MQTT client to your broker
 - server serves the frontend stuff and some api endpoints
 - server sends a value (single float value, not json) from a device on a specific MQTT topic to your broker - only when the value changes
 - server can update mapping at runtime
@@ -55,8 +55,12 @@
 - drop topic
 - add model to exclude list
 - add device to exclude list
+- drop entry from exclude list
+- sort listing by last update or signal count
+- enable and disable list update
+- forget unmapped device after x seconds / minutes
+- enable and disable removing unmapped devices from list 
 
 ### Roadmap
-- drop entry from exclude list
-- forget unmapped device after x seconds / minutes
-
+what's next?
+- 
