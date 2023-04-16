@@ -20,7 +20,7 @@ jobs:
 
       - name: Run frontend build
         run: |
-          npm ci --legacy-peer-deps
+          npm install
           node --experimental-modules --experimental-json-modules config/WebpackConfigProd.js
 
       - name: Deploy to github pages
