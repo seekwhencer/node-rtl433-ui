@@ -11,9 +11,13 @@ services:
     restart: always
     image: hertzg/rtl_433:latest
     container_name: ${PROJECT_NAME}-rtl433
+    command: "-F http"
     devices:
       - /dev/bus/usb/001/003:/dev/bus/usb/001/003
     networks:
       - app
+    ports:
+      - "8433:8433"
     volumes:
       - ./rtl_433/rtl_433.conf:/etc/rtl_433/rtl_433.conf
+
