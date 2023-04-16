@@ -2,7 +2,9 @@
     `${topics.map(t => `
     <tr>
         <td class="devices--device__field">${t.data.field}</td>
-        <td class="devices--device__value" data-topic-value="${t.data.field}">${data[t.data.field]}</td>
+        <td class="devices--device__value" data-topic-value="${t.data.field}">
+            ${data[t.data.field]}
+        </td>
         <td class="devices--device__topic">${t.data.topic}</td>
     </tr>
     `).join('')}` : ``}
