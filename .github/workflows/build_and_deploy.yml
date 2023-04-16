@@ -1,0 +1,32 @@
+name: build_and_deploy
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Run frontend build
+        run: |
+          npm ci --legacy-peer-deps
+          node --experimental-modules --experimental-json-modules config/WebpackConfigProd.js
+
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: frontend-production
+          folder: frontend/dist/prod
+          clean: true
+          single-commit: true
