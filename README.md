@@ -13,23 +13,27 @@
 ![alt text](../master/docs/screenshots/listing.png?raw=true "Screenshot device listing")
 
 ## Setup
-
-- ```
-  chmod +x ./setup.sh
-  ./setup.sh
-  ```
+- install docker and docker compose, create docker volumes
+    ```bash
+    # make the setup script runable
+    chmod +x ./setup.sh
+  
+    # run the script not as sudo
+    ./setup.sh
+    ```
 
 ## Config
 
+- duplicate the file `server/config/default.conf.example` to `server/config/default.conf`
 - edit the file `server/config/default.conf`
+- edit the file `rtl433&/rtl_433.conf`
 
 ## Run
 
 ### Production
-- docker-compose
-    ```bash
-    docker-compose up -d
-    ```
+- ```bash
+  docker-compose up -d
+  ```
 
 ## Development
 
@@ -76,4 +80,4 @@
 
 ### Roadmap
 what's next?
-- 
+- ...
