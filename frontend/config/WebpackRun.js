@@ -130,7 +130,7 @@ export default class WebpackRun {
         this.htmlFile = `${this.htmlFile}`
             .replace('<favicon></favicon>', `<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,${faviconFile}">`)
             .replace('<style></style>', `<link rel="stylesheet" type="text/css" href="data:text/css;base64,${cssFile}" />`)
-            .replace('<script></script>', `<script type="text/javascript" src="js/app.js?${this.hash}"></script>`)
+            .replace('<script></script>', `<script type="text/javascript" src="app.js?${this.hash}"></script>`)
 
         //.replace('<script></script>', `<script type="text/javascript" src="data:text/javascript;base64,${Buffer.from(jsFile).toString('base64')}"></script>`)
         //.replace('<script></script>', `<script  type="module">\n//<![CDATA[\n${jsFile}\n//]]>\n</script>`)
@@ -145,9 +145,13 @@ export default class WebpackRun {
     }
 
     // delete unused files from prod folder
-    clean() {
+    async clean() {
         const proms = [];
-        const files = ['dev.html', 'index_template.html', 'favicon.ico'];
+
+        // move the app.js from js folder to doc root
+        await fs.move(`${this.docRoot}/js/app.js`, `${this.docRoot}/app.js`);
+
+        const files = ['dev.html', 'index_template.html', 'favicon.ico', 'css', 'js'];
         files.forEach(file => proms.push(fs.remove(`${this.docRoot}/${file}`)))
         return Promise.all(proms);
     }
