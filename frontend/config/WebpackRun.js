@@ -147,7 +147,7 @@ export default class WebpackRun {
     // delete unused files from prod folder
     clean() {
         const proms = [];
-        const files = ['dev.html', 'index_template.html'];
+        const files = ['dev.html', 'index_template.html', 'favicon.ico'];
         files.forEach(file => proms.push(fs.remove(`${this.docRoot}/${file}`)))
         return Promise.all(proms);
     }
