@@ -8,8 +8,14 @@ services:
       dockerfile: server/Dockerfile
     image: ${PROJECT_NAME}_server
     working_dir: /raspiscan/server
-    #command: 'tail -f /dev/null'
-    command: '--experimental-modules --experimental-json-modules index.js'
+
+    # the app is not starting !
+    # just enter:
+    # > docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
+    # to run the server
+
+    command: 'tail -f /dev/null'
+
     user: root
     container_name: ${PROJECT_NAME}_server
     restart: always
@@ -30,7 +36,7 @@ services:
       - ENVIRONMENT=default
       - NODE_ENV=development
       - PWD=/raspiscan/server
-      - SERVER_FRONTEND_PATH=../frontend/dist/prod
+      - SERVER_FRONTEND_PATH=../frontend/dist/dev
       - HOST_IP=${HOST_IP}
     devices:
       - "${USB_DEVICE_SOURCE}:${USB_DEVICE_TARGET}"
