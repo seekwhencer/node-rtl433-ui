@@ -7,7 +7,6 @@ import Navigation from './Navigation/index.js';
 
 // tabs
 import Home from './Home/index.js';
-import Setup from './Setup/index.js';
 
 export default class Main extends MODULECLASS {
     constructor(options) {
