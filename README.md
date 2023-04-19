@@ -1,8 +1,9 @@
 # node-rtl433-ui
 
+This is a simple and user guided, graphical way to map a value from a 433 Mhz device to a MQTT topic.
+
 - A web-ui and webserver as MQTT client
 - Using [rtl_433](https://github.com/merbanan/rtl_433) as scanner.
-- This is a simple and user guided, graphical way to map a value from a device to a MQTT topic.
 - The server can exclude devices and forgets unmapped devices after a time.
 - You can choose a value field from a device by clicking on the label.
 - Then you can enter your topic.
@@ -35,7 +36,7 @@
   docker-compose up -d
   ```
 
-## Development
+### Development
 
 - stop production server
     ```bash
@@ -50,7 +51,7 @@
     docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
     ```
   
-- frontend build pipeline
+- frontend dev build pipeline with file watcher and proxy
     > *on a second console*
     ```bash
     # start only the container
@@ -59,8 +60,26 @@
     # start the file watcher build pipeline
     docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
     ```
+  
+    > Now open: http://RASPBERRYPI:4000/dev.html  
 
---
+
+- frontend production build
+    ```bash
+    # start only the container - if not running
+    docker-compose -f docker-compose-frontend.yml
+  
+    # bundling
+    docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigProd.js"
+    ```
+
+### Frontend production bundle
+- The frontend production bundle is not part of this repository.
+- A github action builds the production bundle and push it to the branch: [frontend-production](https://github.com/seekwhencer/node-rtl433-ui/tree/frontend-production)
+- Place the content of this branch into: `frontend/dist/prod`
+  ```bash
+  git clone ...
+  ```
 
 ## Features
 - server works as MQTT client to your broker
