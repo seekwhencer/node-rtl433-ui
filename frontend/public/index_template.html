@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>raspiscan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <favicon></favicon>
+    <style></style>
+    <script></script>
+</head>
+<body>
+<script type="module">
+    window.onload = () => {
+        window.OPTIONS = {
+            debug: true,
+            target: document.querySelector('body')
+        };
+        new APP(window.OPTIONS).then(app => {
+            window.APP = app;
+            console.log('>>> ZACK FEDDICH. READY');
+        });
+    }
+</script>
+</body>
+</html>

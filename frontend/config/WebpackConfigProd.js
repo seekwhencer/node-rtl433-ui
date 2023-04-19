@@ -11,9 +11,6 @@ class WebpackProd extends WebpackConfigClass {
         super();
 
         this.options = options | {silent: false}
-        this.proxyTargetHost = process.env.PROXY_TARGET_HOST || 'localhost';
-        this.proxyTargetPort = process.env.PROXY_TARGET_PORT || '3050';
-        this.proxyPort = parseInt(process.env.VIRTUAL_PORT) || 9000;
 
         this.build();
         this.merge();
@@ -26,14 +23,15 @@ class WebpackProd extends WebpackConfigClass {
                 app: ['./src/app.js', './src/scss/app.scss']
             },
 
-            target: 'web', mode: 'production',
+            target: 'web',
+            mode: 'production',
 
             output: {
-                path: `${this.appPath}/dist/prod`, filename: './js/[name].js'
+                path: `${this.appPath}/dist/prod`,
+                filename: './js/[name].js'
             },
 
             plugins: [
-                // js
                 new ESLintPlugin({
                     extensions: 'js',
                     emitWarning: true,
@@ -47,20 +45,25 @@ class WebpackProd extends WebpackConfigClass {
                 }),
 
                 //
-                new CleanWebpackPlugin(), new CopyWebpackPlugin({
-                    patterns: [{
-                        from: path.resolve(this.appPath, './public'),
-                        to: '.',
-                        globOptions: {
-                            ignore: ["**/dev.html"],
+                new CleanWebpackPlugin(),
+                //
+                new CopyWebpackPlugin({
+                    patterns: [
+                        {
+                            from: path.resolve(this.appPath, './public'),
+                            to: '.',
+                            globOptions: {
+                                ignore: ["**/dev.*"],
+                            }
                         }
-                    }]
+                    ]
                 })
             ],
 
             optimization: {
                 minimize: true, minimizer: [new TerserPlugin({
-                    parallel: true, terserOptions: {
+                    parallel: true,
+                    terserOptions: {
                         mangle: true,
                         compress: true, // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
                     }
@@ -70,8 +73,7 @@ class WebpackProd extends WebpackConfigClass {
             module: {
                 rules: [
                     {
-                        test: /\.html?$/,
-                        loader: "template-literals-loader"
+                        test: /\.html?$/, loader: "template-literals-loader"
                     },
                     {
                         test: /\.scss$/, use: ['style-loader', {
@@ -84,7 +86,7 @@ class WebpackProd extends WebpackConfigClass {
                                 sourceMap: false,
                             },
                         }],
-                    }],
+                    }]
             }
         };
     }

@@ -23,7 +23,7 @@ jobs:
           npm install --legacy-peer-deps
           node --experimental-modules --experimental-json-modules config/WebpackConfigProd.js
 
-      - name: Deploy to github pages
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           branch: frontend-production

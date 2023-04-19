@@ -1,5 +1,4 @@
 import path from 'path';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default class WebpackConfigCommon {
