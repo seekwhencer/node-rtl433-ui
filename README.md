@@ -25,21 +25,34 @@
 
 ## Run
 
+### Production
 - docker-compose
     ```bash
-    docker-compose -f docker-compose-server.yml
-    ```
-
-- the app
-    ```bash
-    docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
+    docker-compose up -d
     ```
 
 ## Development
 
-- frontend build pipeline
+- stop production server
     ```bash
+    docker-compose down
+    ```
+- start server container in dev mode
+    ```bash
+    # start server container in dev mode, not the server
+    docker-compose -f docker-compose-server.yml up -d
+  
+    # start the server
+    docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
+    ```
+  
+- frontend build pipeline
+    > *on a second console*
+    ```bash
+    # start only the container
     docker-compose -f docker-compose-frontend.yml
+  
+    # start the file watcher build pipeline
     docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
     ```
 
