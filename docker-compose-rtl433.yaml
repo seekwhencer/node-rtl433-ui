@@ -1,10 +1,5 @@
 version: "3.6"
 
-networks:
-  app:
-    external: false
-    name: ${PROJECT_NAME}
-
 services:
 
   rtl433:
@@ -14,8 +9,6 @@ services:
     command: "-F http"
     devices:
       - /dev/bus/usb/001/003:/dev/bus/usb/001/003
-    networks:
-      - app
     ports:
       - "8433:8433"
     volumes:
