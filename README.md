@@ -2,21 +2,35 @@
 
 This is a simple and user guided, graphical way to map a value from a 433 Mhz device to a MQTT topic.
 
-- A web-ui and webserver as MQTT client
-- Using [rtl_433](https://github.com/merbanan/rtl_433) as scanner.
-- The server can exclude devices and forgets unmapped devices after a time.
-- You can choose a value field from a device by clicking on the label.
-- Then you can enter your topic.
-- Instantly the server sends this new mapped topic to your mqtt broker. On value change.
-- The frontend is localizable. You can add and set your own language.
+- map a **device** and **field** to a **topic** per web ui.
+- server works as MQTT client to your broker
+- server delivers the frontend statics and some api endpoints
+- server sends a value (single float value, not json) from a device on a specific MQTT topic to your broker - only when the value changes
+- server can update mapping at runtime
+- ui language can be edited and set
+- drop topic (delete mapped topic for a device and value)
+- add model to exclude list
+- add device to exclude list
+- drop entry from exclude list
+- sort device listing by *last update* or *signal count*
+- enable and disable list update
+- forget unmapped device after x seconds / minutes
+- enable and disable removing unmapped devices from list
 
+![Screenshot device listing](../master/docs/screenshots/listing.png?raw=true "Screenshot device listing")
 
-![alt text](../master/docs/screenshots/listing.png?raw=true "Screenshot device listing")
-
-## Setup
+## Setup (Raspberry Pi 4)
+- take the lite OS image without desktop
+- set up your raspberry pi as you will (expand filesystem, enable ssh, disable bluetooth and wifi etc.)
 - install docker and docker compose, create docker volumes
     ```bash
-    # make the setup script runable
+  # use your home folder
+  cd ~
+  
+  # clone repo
+  git clone https://github.com/seekwhencer/node-rtl433-ui.git raspiscan  
+  
+  # make the setup script runable
     chmod +x ./setup.sh
   
     # run the script not as sudo
@@ -27,7 +41,7 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
 
 - duplicate the file `server/config/default.conf.example` to `server/config/default.conf`
 - edit the file `server/config/default.conf`
-- edit the file `rtl433&/rtl_433.conf`
+- edit the file `rtl433/rtl_433.conf`
 
 ## Run
 
@@ -35,6 +49,12 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
 - ```bash
   docker-compose up -d
   ```
+  
+    *at the first run, the image will be build*
+  
+    > Now open: http://RASPBERRYPI:3000
+    
+    If the this folder is empty: `frontend/dist/prod` - run the frontend production build
 
 ### Development
 
@@ -73,30 +93,19 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
     docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigProd.js"
     ```
 
-### Frontend production bundle
+## Frontend 
 - The frontend production bundle is not part of this repository.
 - A github action builds the production bundle and push it to the branch: [frontend-production](https://github.com/seekwhencer/node-rtl433-ui/tree/frontend-production)
-- Place the content of this branch into: `frontend/dist/prod`
+- Place the content of the **frontend-prodcution** branch into: `frontend/dist/prod`
   ```bash
   git clone ...
   ```
 
-## Features
-- server works as MQTT client to your broker
-- server serves the frontend stuff and some api endpoints
-- server sends a value (single float value, not json) from a device on a specific MQTT topic to your broker - only when the value changes
-- server can update mapping at runtime
-- mapping a **device** and **field** to a **topic** per web ui.
-- frontend language can be edited and set
-- drop topic
-- add model to exclude list
-- add device to exclude list
-- drop entry from exclude list
-- sort listing by last update or signal count
-- enable and disable list update
-- forget unmapped device after x seconds / minutes
-- enable and disable removing unmapped devices from list 
 
-### Roadmap
+## Roadmap
 what's next?
+- ui get the forget state at start
 - ...
+
+## In the wild
+![raspiscan](../master/docs/screenshots/raspiscan.png?raw=true "raspiscan")
