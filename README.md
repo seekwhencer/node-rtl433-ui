@@ -28,8 +28,11 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
   cd ~
   
   # clone repo
-  git clone https://github.com/seekwhencer/node-rtl433-ui.git raspiscan  
+  git clone https://github.com/seekwhencer/node-rtl433-ui.git raspiscan
   
+  # the folder
+  cd raspiscan # or: /home/pi/raspiscan or: ~/raspiscan
+    
   # make the setup script runable
     chmod +x ./setup.sh
   
@@ -96,16 +99,15 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
 ## Frontend 
 - The frontend production bundle is not part of this repository.
 - A github action builds the production bundle and push it to the branch: [frontend-production](https://github.com/seekwhencer/node-rtl433-ui/tree/frontend-production)
-- Place the content of the **frontend-prodcution** branch into: `frontend/dist/prod`
-  ```bash
-  git clone ...
-  ```
-
+- The `server/entrypoint.sh` places the content of the **frontend-production** branch into: `server/config/frontend`
+- For production:`SERVER_FRONTEND_PATH=config/frontend` set in `docker-compose.yml`
+- For development:`SERVER_FRONTEND_PATH=../frontend/dist/dev` set in `docker-compose-server.yml`
 
 ## Roadmap
 what's next?
 - ui get the forget state at start
-- ...
+- CI for server
+- docker image for the server
 
 ## In the wild
 ![raspiscan](../master/docs/screenshots/raspiscan.jpg?raw=true "raspiscan")
