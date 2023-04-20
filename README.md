@@ -108,4 +108,4 @@ what's next?
 - ...
 
 ## In the wild
-![raspiscan](../master/docs/screenshots/raspiscan.png?raw=true "raspiscan")
+![raspiscan](../master/docs/screenshots/raspiscan.jpg?raw=true "raspiscan")
