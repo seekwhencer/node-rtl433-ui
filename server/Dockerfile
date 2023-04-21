@@ -5,10 +5,6 @@ RUN apk add --no-cache build-base libtool libusb-dev librtlsdr-dev rtl-sdr cmake
 WORKDIR /home/node
 RUN git clone https://github.com/merbanan/rtl_433.git
 
-RUN mkdir frontend_production
-RUN curl https://raw.githubusercontent.com/seekwhencer/node-rtl433-ui/frontend-production/index.html -o frontend_production/index.html
-RUN curl https://raw.githubusercontent.com/seekwhencer/node-rtl433-ui/frontend-production/app.js -o frontend_production/app.js
-
 WORKDIR /home/node/rtl_433
 RUN mkdir build
 
