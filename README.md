@@ -42,9 +42,9 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
 
 ## Config
 
-- duplicate the file `server/config/default.conf.example` to `server/config/default.conf`
+- edit the file `.env`
 - edit the file `server/config/default.conf`
-- edit the file `rtl433/rtl_433.conf`
+- edit the file `rtl433/rtl_433.conf` (if needed)
 
 ## Run
 

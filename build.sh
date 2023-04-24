@@ -1,33 +1,34 @@
-#!/bin/sh
+#!/bin/bash
 
-# load .env file and config file
+#
+# run this script on a docker host with buildx
+#
+
+# load .env file
 loadConfig() {
-    export DIR="/raspiscan"
+    DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     export $(egrep -v '^#' "${DIR}/.env" | xargs)
 }
 
-bundle() {
-  cd "${DIR}/server"
-  echo "BUNDLING..."
-  node --experimental-modules --experimental-json-modules ./webpack-app-pkg.config.js
+# build the docker image
+build() {
+  env
+  local TAG_LATEST="${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:latest"
+  local TAG_VERSION="${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
+
+  #docker build . -t ${TAG_LATEST} -t ${TAG_VERSION} -f ./server/Dockerfile
+
+  docker buildx build . --builder=${DOCKER_BUILDX_NAME} --platform=${DOCKER_BUILDX_PLATFORM} -t ${TAG_LATEST} -t ${TAG_VERSION} -f ./server/Dockerfile ./server/Dockerfile
 }
 
-bundleNCC(){
-  cd "${DIR}/server"
-  ncc build ./index.js -o dist
+push() {
+  local TAG_LATEST="${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:latest"
+  local TAG_VERSION="${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
+
+  docker push ${TAG_LATEST}
+  docker push ${TAG_VERSION}
 }
 
-createBinary(){
-  cd "${DIR}/server"
-  pkg dist/index.js --output "${BUILD_FILENAME}" --targets "${BUILD_TARGET}" --compress GZip -d
-  chown node:node "${BUILD_FILENAME}"
-  chmod +x "${BUILD_FILENAME}"
-}
-
-
+#
 loadConfig
-
-echo ""
-
-#bundle
-createBinary
+build

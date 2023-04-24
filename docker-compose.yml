@@ -37,7 +37,7 @@ services:
       - ENVIRONMENT=default
       - NODE_ENV=production
       - PWD=/raspiscan/server
-      # important, don't change, the frontend production bundle is placed there
+      # important, don't change it. the frontend production bundle is placed there
       - SERVER_FRONTEND_PATH=config/frontend
       # log topic and device events
       - SERVER_LOG_TOPICS=false

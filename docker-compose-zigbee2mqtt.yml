@@ -1,5 +1,13 @@
 version: '3.8'
+
+networks:
+
+  raspiscan:
+    external: false
+    name: ${PROJECT_NAME}
+
 services:
+
   zigbee2mqtt:
     container_name: ${PROJECT_NAME}_zigbee2mqtt
     restart: always
@@ -9,9 +17,10 @@ services:
     volumes:
       - ./zigbee2mqtt:/app/data
       - /run/udev:/run/udev:ro
-    #network_mode: host
+    networks:
+      - raspiscan
     ports:
-      - "${ZIGBEE_PORT}:{ZIGBEE_PORT_OUTSIDE}/tcp"
+      - "${ZIGBEE_PORT}:${ZIGBEE_PORT_OUTSIDE}/tcp"
     extra_hosts:
       - "${MQTT_HOST}:${MQTT_HOST_IP}"
     environment:

@@ -1,5 +1,11 @@
 version: "3.6"
 
+networks:
+
+  raspiscan:
+    external: false
+    name: ${PROJECT_NAME}
+
 services:
 
   kidsplayer_frontend:
@@ -9,18 +15,20 @@ services:
     image: ${PROJECT_NAME}_frontend
     working_dir: /raspiscan/frontend
     command: 'tail -f /dev/null'
-    #command: "--experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
+
+    # or run on container start
+    # command: "--experimental-modules --experimental-json-modules config/WebpackConfigDev.js"
+
     container_name: ${PROJECT_NAME}_frontend
     volumes:
       - .:/raspiscan
-      - /raspiscan/frontend/node_modules
-      - /raspiscan/shared/node_modules
+    networks:
+      - raspiscan
     ports:
-      - '${FRONTEND_SERVER_PORT}:${FRONTEND_SERVER_PORT}'
+      - '${FRONTEND_SERVER_PORT}:${FRONTEND_SERVER_PORT_OUTSIDE}'
     environment:
       - DEBUG=true
       - ENVIRONMENT=default
-      - NODE_ENV=development
       - PROXY_TARGET_HOST=${FRONTEND_PROXY_TARGET_HOST}
       - PROXY_TARGET_PORT=${FRONTEND_PROXY_TARGET_PORT}
       - SERVER_PORT=${FRONTEND_SERVER_PORT}

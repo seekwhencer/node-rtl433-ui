@@ -15,6 +15,11 @@ RUN cmake ../
 RUN make
 RUN make install
 
+WORKDIR /raspiscan/shared
+COPY shared/package.json .
+RUN npm install
+COPY shared .
+
 WORKDIR /raspiscan/server
 COPY server/package.json .
 RUN npm install
@@ -23,11 +28,6 @@ COPY server .
 COPY server/config/default.conf.example config/default.conf
 COPY server/config/mapping.json.example config/mapping.json
 COPY server/config/excludes.json.example config/excludes.json
-
-WORKDIR /raspiscan/shared
-COPY shared/package.json .
-RUN npm install
-COPY shared .
 
 # obsolete, because there is no polyfill for Proxy()
 #RUN npm install pkg -g

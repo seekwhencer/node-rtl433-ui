@@ -1,11 +1,10 @@
 #!/bin/bash
 
 #
-#
-#
+# run this script on the raspberry pi directly
 #
 
-# load .env file and config file
+# load .env file
 loadConfig() {
     DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     export $(egrep -v '^#' "${DIR}/.env" | xargs)
@@ -15,7 +14,6 @@ loadConfig() {
 update() {
   sudo apt-get update -y
   sudo apt-get upgrade -y
-#  sudo apt-get install dnsutils -y
 }
 
 # docker installation
