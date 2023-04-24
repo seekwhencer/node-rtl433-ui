@@ -9,7 +9,7 @@ export default class RTL433Topics extends MODULECLASS {
         this.label = 'RTL433 TOPICS';
         LOG(this.label, 'INIT');
 
-        this.topicsMappingFile = path.resolve('../rtl_433/mapping.json');
+        this.topicsMappingFile = path.resolve(`${CONF.path}/mapping.json`);
         this.data = [];
 
         this.load();

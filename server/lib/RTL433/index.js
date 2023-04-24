@@ -138,7 +138,7 @@ export default class RTL433 extends MODULECLASS {
     }
 
     removeDevice(device) {
-        LOG(this.label, 'DELETED', device.data.model, device.data.hash);
+        SERVER_LOG_TOPICS ? LOG(this.label, 'DELETED', device.data.model, device.data.hash) : null;
         delete this.devices[device.data.hash];
     }
 

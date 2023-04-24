@@ -1,0 +1,10 @@
+config/*.json
+config/*.conf
+dist
+.babelrc
+testing.js
+webpack-app-pkg.config.js
+.env
+
+!config/*.example
+!config/types.json

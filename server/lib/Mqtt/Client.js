@@ -13,7 +13,7 @@ export default class MqttClient extends MODULECLASS {
 
             this.options = {
                 connection: {
-                    clientId: `${CLIENT_ID}`,
+                    clientId: `${MQTT_CLIENT_ID}`,
                     reconnectPeriod: 1000,
                     connectTimeout: 30 * 1000
                     //...
@@ -23,7 +23,13 @@ export default class MqttClient extends MODULECLASS {
             // events
             this.on('connect', () => {
                 this.publish('app', 'welcome');
+                LOG(this.label, 'CONNECTED TO:', this.url, 'AS', `${MQTT_CLIENT_ID}`);
                 resolve(this);
+            });
+
+            this.on('error', error => {
+                LOG(this.label, 'ERROR', this.url, 'AS', `${MQTT_CLIENT_ID}`);
+                ERROR(this.label, error, '');
             });
 
             this.on('message', (topic, buffer) => {

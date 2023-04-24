@@ -9,7 +9,7 @@ export default class RTL433Excludes extends MODULECLASS {
         this.label = 'RTL433 EXCLUDES';
         LOG(this.label, 'INIT');
 
-        this.excludesFile = path.resolve('../rtl_433/excludes.json');
+        this.excludesFile = path.resolve(`${CONF.path}/excludes.json`);
         this.data = [];
 
         this.load();

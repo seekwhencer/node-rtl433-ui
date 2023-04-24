@@ -9,10 +9,15 @@ export default class Config extends Module {
 
         return new Promise((resolve, reject) => {
             this.label = 'CONFIG';
-
             LOG(this.label, 'INIT');
 
-            this.path = path.resolve(`${APP_DIR}/config`);
+            try {
+                this.configDir = SERVER_CONFIG_DIR;
+            } catch(e) {
+                this.configDir = 'config';
+            }
+
+            this.path = path.resolve(`${APP_DIR}/${this.configDir}`);
 
             this.typesFile = `${this.path}/types.json`;
             this.typeDefinitions = fs.readJsonSync(this.typesFile);

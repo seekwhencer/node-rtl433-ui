@@ -19,7 +19,8 @@ export default class RTL433DeviceTopic extends MODULECLASS {
     }
 
     onProperty(value) {
-        LOG(this.label, 'GOT', value, this.data.field, this.data.topic, JSON.stringify(this.device.data));
+
+        SERVER_LOG_TOPICS ? LOG(this.label, 'GOT', value, this.data.field, this.data.topic, JSON.stringify(this.device.data)) : null;
         this.publish(value);
 
         /*APP.WEBSERVER.sendWS(JSON.stringify({

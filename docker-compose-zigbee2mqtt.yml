@@ -11,9 +11,9 @@ services:
       - /run/udev:/run/udev:ro
     #network_mode: host
     ports:
-      - "7080:7080/tcp"
+      - "${ZIGBEE_PORT}:{ZIGBEE_PORT_OUTSIDE}/tcp"
     extra_hosts:
-      - "${HOST_NAME}:${HOST_IP}"
+      - "${MQTT_HOST}:${MQTT_HOST_IP}"
     environment:
       - TZ=Europe/Berlin
     devices:

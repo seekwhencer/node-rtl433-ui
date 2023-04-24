@@ -1,5 +1,11 @@
 version: "3.6"
 
+networks:
+
+  raspiscan:
+    external: false
+    name: ${PROJECT_NAME}
+
 services:
 
   raspiscan_server:
@@ -11,7 +17,9 @@ services:
 
     # the app is not starting !
     # just enter:
-    # > docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
+    #
+    #   docker exec -it raspiscan_server /bin/sh -c "node --experimental-modules --experimental-json-modules index.js"
+    #
     # to run the server
 
     command: 'tail -f /dev/null'
@@ -21,23 +29,22 @@ services:
     restart: always
     volumes:
       - .:/raspiscan
-      - /raspiscan/server/node_modules
-      - /raspiscan/shared/node_modules
       - ./rtl_433/rtl_433.conf:/etc/rtl_433/rtl_433.conf
       - ./rtl_433/rtl-sdr.rules:/etc/udev/rules.d/rtl-sdr.rules
+    networks:
+      - raspiscan
     ports:
-      - "3000:3000"
+      - "${SERVER_PORT}:${SERVER_PORT_OUTSIDE}"
     extra_hosts:
-      - "host:${HOST_IP}"
-      - "servant:192.168.178.34"
+      - "${MQTT_HOST}:${MQTT_HOST_IP}"
     environment:
       - DEBUG=true
       - VERBOSE=2
       - ENVIRONMENT=default
       - NODE_ENV=development
       - PWD=/raspiscan/server
+      # important change for development
       - SERVER_FRONTEND_PATH=../frontend/dist/dev
-      - HOST_IP=${HOST_IP}
     devices:
       - "${USB_DEVICE_SOURCE}:${USB_DEVICE_TARGET}"
     privileged: true

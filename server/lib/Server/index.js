@@ -15,16 +15,15 @@ export default class WebServer extends MODULECLASS {
             this.parent = parent;
             this.port = SERVER_PORT || 3000;
 
+            // the websocket connections (not in use)
             this.wsConnections = [];
 
-            //@TODO
-            process.env.NODE_ENV === 'production' ? this.env = 'prod' : this.env = 'dev';
-            //this.documentRoot = path.resolve(`${process.cwd()}/../frontend/dist/${this.env}`);
+            NODE_ENV === 'production' ? this.env = 'prod' : this.env = 'dev';
 
-            this.documentRoot = path.resolve(`${process.cwd()}/${SERVER_FRONTEND_PATH}`);
+            // set the frontend statics source path
+            this.documentRoot = path.resolve(`${APP_DIR}/${SERVER_FRONTEND_PATH}`);
 
-            const icon = `${this.documentRoot}/favicon.ico`;
-
+            // set express globally
             global.EXPRESS = express;
 
             this.create().then(() => resolve(this));

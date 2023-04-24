@@ -1,14 +1,9 @@
 # for development
 DEBUG=true
-
-#
-CLIENT_ID=rtl433
-
 # webserver
 SERVER_PORT=3000
 # secons to forget a unmapped device
 DEVICE_UNMAPPED_AGE_MAX=120
-
 # mqtt broker
 MQTT_HOST=CHANGE_ME
 MQTT_PORT=1883

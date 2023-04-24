@@ -56,8 +56,6 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
     *at the first run, the image will be build*
   
     > Now open: http://RASPBERRYPI:3000
-    
-    If the this folder is empty: `frontend/dist/prod` - run the frontend production build
 
 ### Development
 
@@ -95,6 +93,7 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
     # bundling
     docker exec -it raspiscan_frontend /bin/sh -c "node --experimental-modules --experimental-json-modules config/WebpackConfigProd.js"
     ```
+    creates a bundle in `frontend/dist/prod`
 
 ## Frontend 
 - The frontend production bundle is not part of this repository.

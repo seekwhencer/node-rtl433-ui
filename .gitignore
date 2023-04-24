@@ -6,11 +6,12 @@ npm-debug.log
 
 frontend/dist
 server/dist
-server/config/default.conf
-server/config/frontend
+server/config/**/*
 
 rtl_433/mapping.json
 zigbee2mqtt/**/*
 
 !.gitkeep
+!server/config/*.example
+!server/config/type.json
 !zigbee2mqtt/configuration.yaml.example
