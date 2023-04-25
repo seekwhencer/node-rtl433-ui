@@ -19,7 +19,7 @@ build() {
   env
   #docker build . -t ${TAG_LATEST} -t ${TAG_VERSION} -f ./server/Dockerfile
 
-  docker buildx build . --builder=${DOCKER_BUILDX_NAME} --platform=${DOCKER_BUILDX_PLATFORM} --push -t ${TAG_LATEST} -t ${TAG_VERSION} -f ./server/Dockerfile
+  docker buildx build . --no-cache --builder=${DOCKER_BUILDX_NAME} --platform=${DOCKER_BUILDX_PLATFORM} --push -t ${TAG_LATEST} -t ${TAG_VERSION} -f ./server/Dockerfile
 }
 
 #

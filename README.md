@@ -42,6 +42,8 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
 
 ## Config
 
+duplicate *.example files as *
+
 - edit the file `.env`
 - edit the file `server/config/default.conf`
 - edit the file `rtl433/rtl_433.conf` (if needed)
@@ -52,10 +54,7 @@ This is a simple and user guided, graphical way to map a value from a 433 Mhz de
 - ```bash
   docker-compose up -d
   ```
-  
-    *at the first run, the image will be build*
-  
-    > Now open: http://RASPBERRYPI:3000
+  > Now open: http://RASPBERRYPI:3000
 
 ### Development
 
