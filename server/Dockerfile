@@ -49,7 +49,7 @@ COPY server/entrypoint.sh .
 RUN chmod +x entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-WORKDIR /raspiscan/server/config
+WORKDIR /raspiscan/server
 RUN mkdir frontend
 RUN curl https://github.com/seekwhencer/node-rtl433-ui/blob/${FRONTEND_COMMIT_ID}/index.html -o frontend/index.html
 RUN curl https://github.com/seekwhencer/node-rtl433-ui/blob/${FRONTEND_COMMIT_ID}/app.js -o frontend/app.js
