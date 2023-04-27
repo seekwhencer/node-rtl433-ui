@@ -9,7 +9,7 @@ networks:
 services:
 
   raspiscan_server:
-    image: ghcr.io/seekwhencer/node-rtl433-ui:0.1
+    image: ghcr.io/seekwhencer/node-rtl433-ui:${DOCKER_IMAGE_VERSION}
     working_dir: /${PROJECT_NAME}/server
     command: '--experimental-modules --experimental-json-modules index.js'
     user: root
